@@ -4,10 +4,19 @@ import { useState, useRef } from "react";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
+interface SuccessData {
+  nome: string;
+  nickname: string;
+  whatsapp: string;
+  jogo: string;
+  comprovantivoUrl: string;
+}
+
 export default function InscricaoForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fileName, setFileName] = useState("");
+  const [successData, setSuccessData] = useState<SuccessData | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -31,25 +40,13 @@ export default function InscricaoForm() {
       }
 
       setStatus("success");
-
-      // Open WhatsApp with formatted message
-      const nome = formData.get("nome") as string;
-      const nickname = formData.get("nickname") as string;
-      const whatsapp = formData.get("whatsapp") as string;
-      const jogo = formData.get("jogo") as string;
-
-      const msg = encodeURIComponent(
-        `Olá MGX Gaming! Acabei de me inscrever no torneio.\n\n` +
-          `✅ Nome: ${nome}\n` +
-          `🎮 Nickname: ${nickname}\n` +
-          `📱 WhatsApp: ${whatsapp}\n` +
-          `🕹️ Jogo: ${jogo}\n\n` +
-          `Já fiz o pagamento de 800mt. Confirmar inscrição!`
-      );
-
-      setTimeout(() => {
-        window.open(`https://wa.me/258846190531?text=${msg}`, "_blank");
-      }, 1500);
+      setSuccessData({
+        nome: data.nome,
+        nickname: data.nickname,
+        whatsapp: data.whatsapp,
+        jogo: data.jogo,
+        comprovantivoUrl: data.comprovantivoUrl,
+      });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Erro desconhecido.";
       setStatus("error");
@@ -57,31 +54,50 @@ export default function InscricaoForm() {
     }
   }
 
-  if (status === "success") {
+  if (status === "success" && successData) {
+    const whatsappMsg = encodeURIComponent(
+      `Olá MGX Gaming! 🎮\n\n` +
+        `Acabei de me inscrever no torneio de ${successData.jogo}.\n\n` +
+        `✅ Nome: ${successData.nome}\n` +
+        `🎮 Nickname: ${successData.nickname}\n` +
+        `📱 WhatsApp: ${successData.whatsapp}\n\n` +
+        `Já fiz o pagamento de 800mt. Segue o comprovativo:\n` +
+        `${successData.comprovantivoUrl}\n\n` +
+        `Por favor, confirmar a inscrição! ✅`
+    );
+
     return (
-      <div className="bg-[#131313] p-12 text-center border-l-4 border-green-500">
-        <div className="text-green-400 mb-4">
-          <span className="material-symbols-outlined text-6xl">
-            check_circle
-          </span>
+      <div className="bg-[#131313] p-12 text-center border-l-4 border-green-500 space-y-6">
+        <div className="text-green-400">
+          <span className="material-symbols-outlined text-6xl">check_circle</span>
         </div>
-        <h2 className="font-headline font-black text-3xl uppercase mb-4">
+        <h2 className="font-headline font-black text-3xl uppercase">
           Inscrição Enviada!
         </h2>
-        <p className="text-[#ababab] mb-6">
-          A tua inscrição foi registada com sucesso. Estamos a abrir o
-          WhatsApp para confirmares com a equipa MGX Gaming.
+        <p className="text-[#ababab]">
+          A tua inscrição foi registada. Vais receber um <strong className="text-white">email de confirmação</strong> assim que o pagamento for verificado.
         </p>
-        <p className="text-[#ffe792] font-bold text-sm uppercase tracking-widest">
-          Se o WhatsApp não abrir automaticamente, envia uma mensagem para{" "}
-          <a
-            href="https://wa.me/258846190531"
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            84 619 0531
-          </a>
+        <div className="bg-[#1f1f1f] p-4 border border-[#484848] max-w-xs mx-auto">
+          <p className="text-[#ababab] text-xs uppercase tracking-widest mb-3 font-bold">
+            Comprovativo enviado
+          </p>
+          <img
+            src={successData.comprovantivoUrl}
+            alt="Comprovativo"
+            className="w-full h-auto"
+          />
+        </div>
+        <a
+          href={`https://wa.me/258846190531?text=${whatsappMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-headline font-black py-4 px-8 uppercase tracking-widest transition-all"
+        >
+          <span className="material-symbols-outlined text-sm">chat</span>
+          Confirmar via WhatsApp
+        </a>
+        <p className="text-[#484848] text-xs uppercase tracking-widest">
+          Receberás um email quando o pagamento for aprovado
         </p>
       </div>
     );
@@ -89,6 +105,16 @@ export default function InscricaoForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {status === "error" && (
+        <div className="bg-red-900/30 border-l-4 border-red-500 p-4">
+          <p className="text-red-400 font-bold text-sm">Erro:</p>
+          <p className="text-red-300 text-sm mt-1">{errorMsg}</p>
+          <p className="text-red-300/70 text-xs mt-3">
+            Se o erro persiste, contacta: <strong>84 619 0531</strong>
+          </p>
+        </div>
+      )}
+
       {/* Nome */}
       <div>
         <label className="block font-headline font-bold uppercase text-xs tracking-widest text-[#ababab] mb-2">
@@ -99,6 +125,23 @@ export default function InscricaoForm() {
           name="nome"
           required
           placeholder="O teu nome completo"
+          className="w-full bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-body focus:border-[#ffe792] focus:ring-0 outline-none transition-all placeholder:text-[#ababab]/40"
+        />
+      </div>
+
+      {/* Email */}
+      <div>
+        <label className="block font-headline font-bold uppercase text-xs tracking-widest text-[#ababab] mb-2">
+          Email *
+          <span className="ml-2 text-[#ffe792]/60 normal-case tracking-normal font-normal">
+            (para receber confirmação)
+          </span>
+        </label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="o_teu_email@gmail.com"
           className="w-full bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-body focus:border-[#ffe792] focus:ring-0 outline-none transition-all placeholder:text-[#ababab]/40"
         />
       </div>
@@ -143,9 +186,7 @@ export default function InscricaoForm() {
           className="w-full bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-body focus:border-[#ffe792] focus:ring-0 outline-none transition-all"
         >
           <option value="FIFA 24">FIFA 24</option>
-          <option value="Tekken 8" disabled>
-            Tekken 8 (Em Breve)
-          </option>
+          <option value="Tekken 8" disabled>Tekken 8 (Em Breve)</option>
         </select>
       </div>
 
@@ -165,12 +206,8 @@ export default function InscricaoForm() {
             <p className="text-white font-bold">{fileName}</p>
           ) : (
             <>
-              <p className="text-[#ababab] text-sm">
-                Clica para seleccionar o comprovativo
-              </p>
-              <p className="text-[#ababab]/50 text-xs mt-1">
-                PNG, JPG ou PDF — máx. 5MB
-              </p>
+              <p className="text-[#ababab] text-sm">Clica para seleccionar o comprovativo</p>
+              <p className="text-[#ababab]/50 text-xs mt-1">PNG, JPG ou PDF — máx. 5MB</p>
             </>
           )}
         </div>
@@ -181,10 +218,7 @@ export default function InscricaoForm() {
           accept="image/*,.pdf"
           required
           className="hidden"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            setFileName(file ? file.name : "");
-          }}
+          onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
         />
       </div>
 
@@ -194,26 +228,11 @@ export default function InscricaoForm() {
           DADOS DE PAGAMENTO
         </h4>
         <div className="space-y-2 text-sm text-[#ababab]">
-          <p>
-            Valor:{" "}
-            <span className="text-white font-bold">800 Meticais</span>
-          </p>
-          <p>
-            M-Pesa / E-mola:{" "}
-            <span className="text-[#ffe792] font-bold text-lg">84 619 0531</span>
-          </p>
-          <p className="text-xs text-[#ababab]/70 mt-2">
-            Após o pagamento, faz upload do comprovativo acima.
-          </p>
+          <p>Valor: <span className="text-white font-bold">800 Meticais</span></p>
+          <p>M-Pesa / E-mola: <span className="text-[#ffe792] font-bold text-lg">84 619 0531</span></p>
+          <p className="text-xs text-[#ababab]/70 mt-2">Após o pagamento, faz upload do comprovativo acima.</p>
         </div>
       </div>
-
-      {/* Error Message */}
-      {status === "error" && (
-        <div className="bg-red-900/30 border border-red-500 p-4 text-red-300 text-sm">
-          {errorMsg}
-        </div>
-      )}
 
       {/* Submit */}
       <button
@@ -223,9 +242,7 @@ export default function InscricaoForm() {
       >
         {status === "loading" ? (
           <>
-            <span className="material-symbols-outlined animate-spin">
-              progress_activity
-            </span>
+            <span className="material-symbols-outlined animate-spin">progress_activity</span>
             A PROCESSAR...
           </>
         ) : (

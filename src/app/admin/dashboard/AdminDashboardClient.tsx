@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 interface Inscricao {
   id: string;
   nome: string;
+  email: string | null;
   whatsapp: string;
   nickname: string;
   jogo: string;
@@ -418,6 +419,16 @@ export default function AdminDashboardClient({
                         {selected.nickname}
                       </span>
                     </div>
+                    {selected.email && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-label text-[#ababab] uppercase tracking-widest">
+                          Email
+                        </span>
+                        <span className="text-xs font-body text-[#ffe792] truncate max-w-[160px]" title={selected.email}>
+                          {selected.email}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex justify-between items-center">
                       <span className="text-[10px] font-label text-[#ababab] uppercase tracking-widest">
                         WhatsApp

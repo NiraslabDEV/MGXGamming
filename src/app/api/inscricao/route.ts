@@ -27,12 +27,13 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
 
     const nome = formData.get("nome") as string;
+    const email = formData.get("email") as string;
     const whatsapp = formData.get("whatsapp") as string;
     const nickname = formData.get("nickname") as string;
     const jogo = formData.get("jogo") as string;
     const comprovativo = formData.get("comprovativo") as File | null;
 
-    if (!nome || !whatsapp || !nickname || !jogo) {
+    if (!nome || !email || !whatsapp || !nickname || !jogo) {
       return NextResponse.json(
         { error: "Preenche todos os campos obrigatórios." },
         { status: 400 }
@@ -92,6 +93,7 @@ export async function POST(req: NextRequest) {
     // Save to DB
     const { error: dbError } = await supabase.from("inscricoes").insert({
       nome,
+      email,
       whatsapp,
       nickname,
       jogo,
