@@ -60,7 +60,7 @@ export async function PATCH(
 
       if (status === "confirmado") {
         await resend.emails.send({
-          from: "MGX Gaming <noreply@mgxgaming.co.mz>",
+          from: "MGX Gaming <onboarding@resend.dev>",
           to: inscricao.email,
           subject: `✅ Inscrição Confirmada — ${inscricao.jogo} | MGX Gaming`,
           html: `
@@ -103,7 +103,7 @@ export async function PATCH(
         });
       } else if (status === "rejeitado") {
         await resend.emails.send({
-          from: "MGX Gaming <noreply@mgxgaming.co.mz>",
+          from: "MGX Gaming <onboarding@resend.dev>",
           to: inscricao.email,
           subject: `❌ Inscrição Cancelada — ${inscricao.jogo} | MGX Gaming`,
           html: `

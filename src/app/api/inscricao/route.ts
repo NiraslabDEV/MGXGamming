@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
       try {
         const resend = getResend();
         await resend.emails.send({
-          from: "MGX Gaming <noreply@mgxgaming.co.mz>",
+          from: "MGX Gaming <onboarding@resend.dev>",
           to: process.env.ORGANIZER_EMAIL,
           subject: `Nova Inscrição: ${nome} — ${jogo}`,
           html: `
