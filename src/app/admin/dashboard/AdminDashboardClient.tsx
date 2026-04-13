@@ -36,6 +36,7 @@ export default function AdminDashboardClient({
   const [filterStatus, setFilterStatus] = useState("all");
   const [search, setSearch] = useState("");
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filtered = inscricoes.filter((i) => {
     const matchStatus =
@@ -87,10 +88,18 @@ export default function AdminDashboardClient({
   return (
     <div className="bg-[#0e0e0e] text-white min-h-screen font-body">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 border-b border-white/10">
-        <span className="text-2xl font-black text-yellow-400 italic font-headline uppercase tracking-wider">
-          MGX Gaming
-        </span>
+      <header className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl flex justify-between items-center px-4 md:px-6 h-16 border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="md:hidden material-symbols-outlined text-[#ababab] hover:text-yellow-400 transition-colors"
+          >
+            menu
+          </button>
+          <span className="text-2xl font-black text-yellow-400 italic font-headline uppercase tracking-wider">
+            MGX Gaming
+          </span>
+        </div>
         <div className="flex items-center gap-4">
           <div className="relative hidden md:block">
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#ababab] text-sm">
@@ -113,9 +122,17 @@ export default function AdminDashboardClient({
         </div>
       </header>
 
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-30 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       <div className="flex h-screen pt-16">
         {/* Sidebar */}
-        <aside className="fixed left-0 top-0 h-full w-64 bg-neutral-950 pt-16 flex flex-col font-headline font-medium z-40">
+        <aside className={`fixed left-0 top-0 h-full w-64 bg-neutral-950 pt-16 flex flex-col font-headline font-medium z-40 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
           <div className="p-6 bg-neutral-900 border-b border-white/5">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-[#ffe792] flex items-center justify-center font-black text-black text-lg">
@@ -159,7 +176,7 @@ export default function AdminDashboardClient({
         </aside>
 
         {/* Main */}
-        <main className="ml-64 flex-1 p-8 overflow-y-auto">
+        <main className="ml-0 md:ml-64 flex-1 p-4 md:p-8 overflow-y-auto">
           {/* Page Header */}
           <div className="mb-8 border-l-4 border-[#ffe792] pl-6 py-2">
             <h1 className="text-4xl font-headline font-black uppercase tracking-tighter">
@@ -283,7 +300,7 @@ export default function AdminDashboardClient({
                         className={`hover:bg-white/5 transition-colors cursor-pointer ${
                           selected?.id === inscricao.id ? "bg-[#ffe792]/5" : ""
                         }`}
-                        onClick={() => setSelected(inscricao)}
+                        onClick={() => { setSelected(inscricao); setSidebarOpen(false); }}
                       >
                         <td className="px-6 py-4">
                           <p className="font-headline font-bold text-white uppercase tracking-tight">
