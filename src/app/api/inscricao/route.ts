@@ -14,6 +14,15 @@ function getResend() {
 }
 
 export async function POST(req: NextRequest) {
+  // Check env vars first
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    console.error("Missing Supabase env vars");
+    return NextResponse.json(
+      { error: "Servidor não configurado. Contacta o administrador." },
+      { status: 500 }
+    );
+  }
+
   try {
     const formData = await req.formData();
 
@@ -23,7 +32,6 @@ export async function POST(req: NextRequest) {
     const jogo = formData.get("jogo") as string;
     const comprovativo = formData.get("comprovativo") as File | null;
 
-    // Validate required fields
     if (!nome || !whatsapp || !nickname || !jogo) {
       return NextResponse.json(
         { error: "Preenche todos os campos obrigatórios." },
@@ -38,7 +46,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate file size (max 5MB)
     if (comprovativo.size > 5 * 1024 * 1024) {
       return NextResponse.json(
         { error: "O comprovativo não pode ter mais de 5MB." },
@@ -46,13 +53,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const supabase = getSupabase();
+
     // Upload comprovativo to Supabase Storage
     const fileExt = comprovativo.name.split(".").pop();
     const fileName = `${Date.now()}-${nickname.replace(/\s+/g, "-")}.${fileExt}`;
     const arrayBuffer = await comprovativo.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
-
-    const supabase = getSupabase();
 
     const { error: uploadError } = await supabase.storage
       .from("comprovativos")
@@ -62,21 +69,27 @@ export async function POST(req: NextRequest) {
       });
 
     if (uploadError) {
-      console.error("Upload error:", uploadError);
+      console.error("Upload error:", uploadError.message);
+      // Bucket não existe ou sem permissão
+      if (uploadError.message.includes("not found") || uploadError.message.includes("Bucket")) {
+        return NextResponse.json(
+          { error: "Bucket de storage não configurado. Cria o bucket 'comprovativos' no Supabase." },
+          { status: 500 }
+        );
+      }
       return NextResponse.json(
-        { error: "Erro ao fazer upload do comprovativo. Tenta novamente." },
+        { error: `Erro no upload: ${uploadError.message}` },
         { status: 500 }
       );
     }
 
-    // Get public URL of comprovativo
     const { data: urlData } = supabase.storage
       .from("comprovativos")
       .getPublicUrl(fileName);
 
     const comprovantivoUrl = urlData.publicUrl;
 
-    // Save inscription to Supabase DB
+    // Save to DB
     const { error: dbError } = await supabase.from("inscricoes").insert({
       nome,
       whatsapp,
@@ -87,60 +100,61 @@ export async function POST(req: NextRequest) {
     });
 
     if (dbError) {
-      console.error("DB error:", dbError);
+      console.error("DB error:", dbError.message);
+      if (dbError.message.includes("relation") || dbError.message.includes("does not exist")) {
+        return NextResponse.json(
+          { error: "Tabela 'inscricoes' não existe. Executa o schema.sql no Supabase." },
+          { status: 500 }
+        );
+      }
       return NextResponse.json(
-        { error: "Erro ao guardar inscrição. Tenta novamente." },
+        { error: `Erro na base de dados: ${dbError.message}` },
         { status: 500 }
       );
     }
 
-    // Send email notification to organizer
+    // Send email (optional — skip if not configured)
     if (process.env.RESEND_API_KEY && process.env.ORGANIZER_EMAIL) {
-      const resend = getResend();
-      await resend.emails.send({
-        from: "MGX Gaming <noreply@mgxgaming.co.mz>",
-        to: process.env.ORGANIZER_EMAIL,
-        subject: `Nova Inscrição: ${nome} — ${jogo}`,
-        html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0e0e0e; color: #fff; padding: 32px;">
-            <h1 style="color: #ffe792; font-size: 24px; margin-bottom: 8px;">NOVA INSCRIÇÃO</h1>
-            <p style="color: #ababab; margin-bottom: 24px; font-size: 14px;">MGX Gaming — Torneio ${jogo}</p>
-
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; color: #ababab; font-size: 12px; text-transform: uppercase;">Nome</td>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; font-weight: bold;">${nome}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; color: #ababab; font-size: 12px; text-transform: uppercase;">WhatsApp</td>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; font-weight: bold;">${whatsapp}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; color: #ababab; font-size: 12px; text-transform: uppercase;">Nickname</td>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; font-weight: bold;">${nickname}</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; color: #ababab; font-size: 12px; text-transform: uppercase;">Jogo</td>
-                <td style="padding: 12px; border-bottom: 1px solid #262626; font-weight: bold;">${jogo}</td>
-              </tr>
-            </table>
-
-            <div style="margin-top: 24px; padding: 16px; background: #131313; border-left: 4px solid #ffe792;">
-              <p style="color: #ababab; font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">COMPROVATIVO</p>
-              <a href="${comprovantivoUrl}" style="color: #ffe792; font-weight: bold;">Ver Comprovativo →</a>
+      try {
+        const resend = getResend();
+        await resend.emails.send({
+          from: "MGX Gaming <noreply@mgxgaming.co.mz>",
+          to: process.env.ORGANIZER_EMAIL,
+          subject: `Nova Inscrição: ${nome} — ${jogo}`,
+          html: `
+            <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0e0e0e;color:#fff;padding:32px;">
+              <h1 style="color:#ffe792;font-size:24px;margin-bottom:8px;">NOVA INSCRIÇÃO</h1>
+              <p style="color:#ababab;margin-bottom:24px;font-size:14px;">MGX Gaming — Torneio ${jogo}</p>
+              <table style="width:100%;border-collapse:collapse;">
+                <tr><td style="padding:12px;border-bottom:1px solid #262626;color:#ababab;font-size:12px;">Nome</td><td style="padding:12px;border-bottom:1px solid #262626;font-weight:bold;">${nome}</td></tr>
+                <tr><td style="padding:12px;border-bottom:1px solid #262626;color:#ababab;font-size:12px;">WhatsApp</td><td style="padding:12px;border-bottom:1px solid #262626;font-weight:bold;">${whatsapp}</td></tr>
+                <tr><td style="padding:12px;border-bottom:1px solid #262626;color:#ababab;font-size:12px;">Nickname</td><td style="padding:12px;border-bottom:1px solid #262626;font-weight:bold;">${nickname}</td></tr>
+              </table>
+              <div style="margin-top:24px;padding:16px;background:#131313;border-left:4px solid #ffe792;">
+                <a href="${comprovantivoUrl}" style="color:#ffe792;font-weight:bold;">Ver Comprovativo →</a>
+              </div>
             </div>
-
-            <p style="color: #484848; font-size: 11px; margin-top: 32px;">MGX Gaming — Maputo, Moçambique</p>
-          </div>
-        `,
-      });
+          `,
+        });
+      } catch (emailErr) {
+        // Email failure doesn't block the inscription
+        console.error("Email error (non-fatal):", emailErr);
+      }
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      comprovantivoUrl,
+      nome,
+      nickname,
+      whatsapp,
+      jogo,
+    });
   } catch (err) {
-    console.error("API error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("API error:", message);
     return NextResponse.json(
-      { error: "Erro interno. Tenta novamente." },
+      { error: `Erro interno: ${message}` },
       { status: 500 }
     );
   }
