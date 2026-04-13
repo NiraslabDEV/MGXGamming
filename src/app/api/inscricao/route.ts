@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     const buffer = new Uint8Array(arrayBuffer);
 
     const { error: uploadError } = await supabase.storage
-      .from("comprovativos")
+      .from("Comprovativos")
       .upload(fileName, buffer, {
         contentType: comprovativo.type,
         upsert: false,
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { data: urlData } = supabase.storage
-      .from("comprovativos")
+      .from("Comprovativos")
       .getPublicUrl(fileName);
 
     const comprovantivoUrl = urlData.publicUrl;
