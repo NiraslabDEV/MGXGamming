@@ -99,6 +99,12 @@ export default function InscricaoForm() {
         <p className="text-[#484848] text-xs uppercase tracking-widest">
           Receberás um email quando o pagamento for aprovado
         </p>
+        <div className="bg-[#1f1f1f] border border-[#484848] p-4 text-left max-w-xs mx-auto">
+          <p className="text-[#ababab] text-xs flex items-start gap-2">
+            <span className="material-symbols-outlined text-sm text-yellow-400 flex-shrink-0 mt-0.5">info</span>
+            <span>O email de confirmação pode chegar à pasta de <strong className="text-white">spam/lixo</strong>. Verifica lá se não aparecer na caixa de entrada.</span>
+          </p>
+        </div>
       </div>
     );
   }
