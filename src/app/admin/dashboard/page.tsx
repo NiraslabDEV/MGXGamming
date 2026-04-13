@@ -25,15 +25,17 @@ export default async function AdminDashboard() {
     .order("data_inscricao", { ascending: false });
 
   const total = inscricoes?.length ?? 0;
-  const pagos = inscricoes?.filter((i) => i.status === "confirmado").length ?? 0;
-  const ativos = inscricoes?.filter((i) => i.status !== "rejeitado").length ?? 0;
-  const totalMt = pagos * 800;
+  const confirmados = inscricoes?.filter((i) => i.status === "confirmado").length ?? 0;
+  const pendentes = inscricoes?.filter((i) => i.status === "pendente").length ?? 0;
+  const rejeitados = inscricoes?.filter((i) => i.status === "rejeitado").length ?? 0;
+  const ativos = confirmados + pendentes;
+  const totalMt = confirmados * 800;
   const vagasRestantes = Math.max(0, 32 - ativos);
 
   return (
     <AdminDashboardClient
       inscricoes={inscricoes ?? []}
-      stats={{ total, totalMt, vagasRestantes }}
+      stats={{ total: ativos, totalMt, vagasRestantes, confirmados, pendentes, rejeitados }}
     />
   );
 }

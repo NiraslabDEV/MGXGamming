@@ -19,6 +19,9 @@ interface Stats {
   total: number;
   totalMt: number;
   vagasRestantes: number;
+  confirmados: number;
+  pendentes: number;
+  rejeitados: number;
 }
 
 export default function AdminDashboardClient({
@@ -188,45 +191,62 @@ export default function AdminDashboardClient({
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div className="bg-[#131313] p-6 border-l-2 border-[#ffd709]">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+            <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
               <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Total Inscritos
+                Inscritos Activos
               </p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black">
-                  {stats.total}
-                </span>
-                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">
-                  group
-                </span>
+                <span className="text-4xl font-headline font-black">{stats.total}</span>
+                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">group</span>
               </div>
             </div>
-            <div className="bg-[#131313] p-6 border-l-2 border-[#ffd709]">
+            <div className="bg-[#131313] p-5 border-l-2 border-green-500">
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
+                Aprovados
+              </p>
+              <div className="flex items-end justify-between">
+                <span className="text-4xl font-headline font-black text-green-400">{stats.confirmados}</span>
+                <span className="material-symbols-outlined text-green-500/30 text-4xl">verified</span>
+              </div>
+            </div>
+            <div className="bg-[#131313] p-5 border-l-2 border-yellow-500">
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
+                Pendentes
+              </p>
+              <div className="flex items-end justify-between">
+                <span className="text-4xl font-headline font-black text-yellow-400">{stats.pendentes}</span>
+                <span className="material-symbols-outlined text-yellow-500/30 text-4xl">pending</span>
+              </div>
+            </div>
+            <div className="bg-[#131313] p-5 border-l-2 border-red-500">
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
+                Rejeitados
+              </p>
+              <div className="flex items-end justify-between">
+                <span className="text-4xl font-headline font-black text-red-400">{stats.rejeitados}</span>
+                <span className="material-symbols-outlined text-red-500/30 text-4xl">cancel</span>
+              </div>
+            </div>
+            <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
               <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
                 Total Arrecadado
               </p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black">
+                <span className="text-3xl font-headline font-black">
                   {stats.totalMt.toLocaleString()}{" "}
-                  <span className="text-lg text-[#ffe792]">MT</span>
+                  <span className="text-base text-[#ffe792]">MT</span>
                 </span>
-                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">
-                  payments
-                </span>
+                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">payments</span>
               </div>
             </div>
-            <div className="bg-[#131313] p-6 border-l-2 border-[#ffd709]">
+            <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
               <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
                 Vagas Restantes
               </p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black">
-                  {stats.vagasRestantes}
-                </span>
-                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">
-                  event_seat
-                </span>
+                <span className="text-4xl font-headline font-black">{stats.vagasRestantes}</span>
+                <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">event_seat</span>
               </div>
             </div>
           </div>
