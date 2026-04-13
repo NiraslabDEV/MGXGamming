@@ -2,6 +2,9 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { createClient } from "@supabase/supabase-js";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Campeonato de FIFA 24 — MGX Gaming | Maputo",
@@ -9,7 +12,25 @@ export const metadata = {
     "Detalhes do Campeonato de FIFA 24 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
 };
 
-export default function TorneioFifa() {
+const TOTAL_VAGAS = 32;
+
+export default async function TorneioFifa() {
+  let vagasRestantes = TOTAL_VAGAS;
+  try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+      process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+    );
+    const { count } = await supabase
+      .from("inscricoes")
+      .select("*", { count: "exact", head: true })
+      .neq("status", "rejeitado");
+    vagasRestantes = Math.max(0, TOTAL_VAGAS - (count ?? 0));
+  } catch {
+    // fallback to default if DB unavailable
+  }
+  const preenchidas = TOTAL_VAGAS - vagasRestantes;
+  const percentagem = Math.round((preenchidas / TOTAL_VAGAS) * 100);
   return (
     <>
       <Navbar />
@@ -272,23 +293,23 @@ export default function TorneioFifa() {
               </h4>
               <div className="flex justify-between items-end">
                 <div>
-                  <p className="text-4xl font-black font-headline">32</p>
+                  <p className="text-4xl font-black font-headline">{TOTAL_VAGAS}</p>
                   <p className="text-xs font-bold uppercase tracking-widest">
                     VAGAS TOTAIS
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-4xl font-black font-headline">12</p>
+                  <p className="text-4xl font-black font-headline">{vagasRestantes}</p>
                   <p className="text-xs font-bold uppercase tracking-widest">
                     RESTANTES
                   </p>
                 </div>
               </div>
               <div className="mt-4 h-2 bg-black/20 w-full">
-                <div className="h-full bg-black w-[62%]" />
+                <div className="h-full bg-black" style={{ width: `${percentagem}%` }} />
               </div>
               <p className="text-xs mt-2 font-bold text-black/60 uppercase">
-                62% das vagas preenchidas
+                {percentagem}% das vagas preenchidas
               </p>
             </div>
 

@@ -26,8 +26,9 @@ export default async function AdminDashboard() {
 
   const total = inscricoes?.length ?? 0;
   const pagos = inscricoes?.filter((i) => i.status === "confirmado").length ?? 0;
+  const ativos = inscricoes?.filter((i) => i.status !== "rejeitado").length ?? 0;
   const totalMt = pagos * 800;
-  const vagasRestantes = Math.max(0, 32 - total);
+  const vagasRestantes = Math.max(0, 32 - ativos);
 
   return (
     <AdminDashboardClient

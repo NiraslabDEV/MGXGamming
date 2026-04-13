@@ -49,7 +49,7 @@ export default function AdminDashboardClient({
     return matchStatus && matchSearch;
   });
 
-  async function updateStatus(id: string, status: "confirmado" | "rejeitado") {
+  async function updateStatus(id: string, status: "confirmado" | "rejeitado" | "pendente") {
     setLoadingId(id);
     await fetch(`/api/inscricao/${id}`, {
       method: "PATCH",
@@ -502,13 +502,30 @@ export default function AdminDashboardClient({
                   {selected.status === "confirmado" && (
                     <div className="mt-6 flex gap-3">
                       <button
-                        onClick={() =>
-                          updateStatus(selected.id, "rejeitado")
-                        }
+                        onClick={() => updateStatus(selected.id, "rejeitado")}
                         disabled={loadingId === selected.id}
                         className="w-full bg-[#262626] border border-[#484848] py-3 text-[10px] font-black uppercase tracking-widest hover:bg-red-900/30 hover:text-red-400 hover:border-red-500 transition-all disabled:opacity-50"
                       >
-                        Reverter para Pendente
+                        {loadingId === selected.id ? "..." : "Rejeitar"}
+                      </button>
+                    </div>
+                  )}
+
+                  {selected.status === "rejeitado" && (
+                    <div className="mt-6 flex gap-3">
+                      <button
+                        onClick={() => updateStatus(selected.id, "pendente")}
+                        disabled={loadingId === selected.id}
+                        className="flex-1 bg-[#262626] border border-[#484848] py-3 text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all disabled:opacity-50"
+                      >
+                        {loadingId === selected.id ? "..." : "Pendente"}
+                      </button>
+                      <button
+                        onClick={() => updateStatus(selected.id, "confirmado")}
+                        disabled={loadingId === selected.id}
+                        className="flex-1 bg-[#ffd709] text-black py-3 text-[10px] font-black uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all disabled:opacity-50"
+                      >
+                        {loadingId === selected.id ? "..." : "Aprovar"}
                       </button>
                     </div>
                   )}
