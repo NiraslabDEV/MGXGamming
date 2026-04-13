@@ -60,6 +60,9 @@ export default function AdminDashboardClient({
       body: JSON.stringify({ status }),
     });
     setLoadingId(null);
+    if (selected?.id === id) {
+      setSelected((prev) => prev ? { ...prev, status } : prev);
+    }
     startTransition(() => router.refresh());
   }
 
