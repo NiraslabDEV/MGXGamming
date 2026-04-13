@@ -11,6 +11,13 @@ export default function Footer() {
             © 2024 MGX GAMING. URBAN KINETIC DIVISION. POWERING THE NEXT
             GENERATION OF AFRICAN ESPORTS.
           </p>
+          <a
+            href="/admin"
+            className="text-[#484848] hover:text-[#ffe792] transition-all duration-200 text-[10px] uppercase tracking-[0.2em] font-label flex items-center gap-1"
+          >
+            <span className="material-symbols-outlined text-sm">lock</span>
+            Admin
+          </a>
         </div>
         <div className="flex flex-wrap justify-center gap-8">
           <a
