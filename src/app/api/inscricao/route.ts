@@ -10,7 +10,7 @@ function getSupabase() {
 }
 
 function getResend() {
-  return new Resend(process.env.RESEND_API_KEY || "");
+  return new Resend(process.env.EMAIL_KEY || "");
 }
 
 export async function POST(req: NextRequest) {
@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send email (optional — skip if not configured)
-    if (process.env.RESEND_API_KEY && process.env.ORGANIZER_EMAIL) {
+    if (process.env.EMAIL_KEY && process.env.ORGANIZER_EMAIL) {
       try {
         const resend = getResend();
         await resend.emails.send({
