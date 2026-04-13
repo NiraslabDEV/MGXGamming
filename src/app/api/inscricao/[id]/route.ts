@@ -54,6 +54,8 @@ export async function PATCH(
   }
 
   // Send email notification if Resend is configured and player has email
+  console.log("[email] status:", status, "| email:", inscricao.email, "| RESEND_API_KEY set:", !!process.env.RESEND_API_KEY);
+
   if (process.env.RESEND_API_KEY && inscricao.email && (status === "confirmado" || status === "rejeitado")) {
     try {
       const resend = new Resend(process.env.RESEND_API_KEY);
@@ -150,11 +152,11 @@ export async function PATCH(
           `,
         });
       }
+      console.log("[email] sent to:", inscricao.email);
     } catch (emailErr) {
-      // Email failure doesn't block the status update
-      console.error("Email notification error (non-fatal):", emailErr);
+      console.error("[email] error:", emailErr);
     }
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: true, emailSent: !!(process.env.RESEND_API_KEY && inscricao.email) });
 }
