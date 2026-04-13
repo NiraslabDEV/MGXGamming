@@ -160,3 +160,25 @@ export async function PATCH(
 
   return NextResponse.json({ success: true, emailSent: !!(process.env.EMAIL_KEY && inscricao.email) });
 }
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("mgx_admin_token");
+  if (!token || token.value !== process.env.ADMIN_PASSWORD) {
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const supabase = getSupabase();
+
+  const { error } = await supabase.from("inscricoes").delete().eq("id", id);
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ success: true });
+}

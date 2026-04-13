@@ -66,6 +66,15 @@ export default function AdminDashboardClient({
     startTransition(() => router.refresh());
   }
 
+  async function deleteInscricao(id: string) {
+    if (!confirm("Tens a certeza que queres apagar este registo? Esta acção é irreversível.")) return;
+    setLoadingId(id);
+    await fetch(`/api/inscricao/${id}`, { method: "DELETE" });
+    setLoadingId(null);
+    if (selected?.id === id) setSelected(null);
+    startTransition(() => router.refresh());
+  }
+
   async function handleLogout() {
     await fetch("/api/admin/logout", { method: "POST" });
     router.push("/admin");
@@ -560,11 +569,19 @@ export default function AdminDashboardClient({
                     rel="noopener noreferrer"
                     className="mt-3 flex items-center justify-center gap-2 w-full py-3 bg-green-600/20 text-green-400 border border-green-600/30 hover:bg-green-600 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest"
                   >
-                    <span className="material-symbols-outlined text-sm">
-                      chat
-                    </span>
+                    <span className="material-symbols-outlined text-sm">chat</span>
                     Contactar via WhatsApp
                   </a>
+
+                  {/* Delete */}
+                  <button
+                    onClick={() => deleteInscricao(selected.id)}
+                    disabled={loadingId === selected.id}
+                    className="mt-2 flex items-center justify-center gap-2 w-full py-3 bg-transparent text-[#484848] border border-[#262626] hover:bg-red-900/30 hover:text-red-400 hover:border-red-800 transition-all text-[10px] font-black uppercase tracking-widest disabled:opacity-50"
+                  >
+                    <span className="material-symbols-outlined text-sm">delete</span>
+                    {loadingId === selected.id ? "A apagar..." : "Apagar registo"}
+                  </button>
                 </div>
               ) : (
                 <div className="bg-[#191919] p-12 text-center">
