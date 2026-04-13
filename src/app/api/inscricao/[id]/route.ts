@@ -10,7 +10,7 @@ function getSupabase() {
   );
 }
 
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXX"; // substitui pelo link real do grupo
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/IkoKdPj6QUk9XTXdDmD7H8";
 
 export async function PATCH(
   req: NextRequest,
