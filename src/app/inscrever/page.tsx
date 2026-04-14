@@ -5,9 +5,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import InscricaoForm from "./InscricaoForm";
 
 export const metadata = {
-  title: "Inscrição — Campeonato FIFA 24 | MGX Gaming",
+  title: "Inscrição — Campeonato FC25 | MGX Gaming",
   description:
-    "Inscreve-te no Campeonato de FIFA 24 da MGX Gaming. Preenche o formulário, paga 800mt via M-Pesa e garante a tua vaga.",
+    "Inscreve-te no Campeonato de FC25 da MGX Gaming. Preenche o formulário, paga 800mt via M-Pesa e garante a tua vaga.",
 };
 
 export default function InscricaoPage() {
@@ -34,7 +34,7 @@ export default function InscricaoPage() {
               <div className="h-[2px] w-12 bg-[#ffe792]" />
             </div>
             <h1 className="font-headline text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-none">
-              INSCRIÇÃO <span className="text-[#ffe792]">FIFA 24</span>
+              INSCRIÇÃO <span className="text-[#ffe792]">FC25</span>
             </h1>
             <p className="text-[#ababab] mt-4 text-lg max-w-xl">
               Preenche o formulário, faz o pagamento de{" "}
@@ -86,7 +86,7 @@ export default function InscricaoPage() {
                       Local
                     </span>
                     <span className="font-headline font-black text-sm text-right">
-                      Arena MGX, Maputo
+                      NelioGamingLounge, Super Marés
                     </span>
                   </div>
                   <div className="flex justify-between items-center">

@@ -188,10 +188,10 @@ export default function InscricaoForm() {
         <select
           name="jogo"
           required
-          defaultValue="FIFA 24"
+          defaultValue="FC25"
           className="w-full bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-body focus:border-[#ffe792] focus:ring-0 outline-none transition-all"
         >
-          <option value="FIFA 24">FIFA 24</option>
+          <option value="FC25">FC25</option>
           <option value="Tekken 8" disabled>Tekken 8 (Em Breve)</option>
         </select>
       </div>

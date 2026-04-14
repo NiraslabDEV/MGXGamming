@@ -20,11 +20,11 @@ export default function Home() {
           </div>
           <div className="relative z-10 max-w-4xl">
             <div className="inline-block bg-[#ffe792] text-black px-3 py-1 font-headline font-black text-xs tracking-[0.2em] mb-6 uppercase">
-              MOZAMBIQUE PREMIER DIVISION
+              MOZAMBIQUE GAMING EXPERIENCE
             </div>
             <h1 className="text-6xl md:text-8xl font-headline font-black leading-[0.9] tracking-tighter uppercase mb-8">
-              O Próximo Nível <br />
-              do Gaming em <br />
+              Torna-te Gamer <br />
+              Pro em <br />
               <span className="text-[#ffe792]">Moçambique</span>
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -32,7 +32,7 @@ export default function Home() {
                 href="/inscrever"
                 className="px-8 py-5 bg-[#ffe792] text-black font-headline font-black text-lg tracking-tight uppercase transition-all hover:translate-x-2 active:scale-95 flex items-center gap-3"
               >
-                INSCREVER NO TORNEIO FIFA
+                INSCREVER NO TORNEIO FC25
                 <span className="material-symbols-outlined font-bold">
                   arrow_forward
                 </span>
@@ -51,14 +51,14 @@ export default function Home() {
         <div className="bg-black py-4 flex overflow-hidden whitespace-nowrap border-y border-[#484848]/30">
           <div className="flex gap-12 animate-marquee font-headline font-black text-[#ffe792]/40 uppercase tracking-widest text-sm italic">
             <span>
-              FIFA 24 LIVE • TEKKEN WORLD TOUR RULES • MAPUTO ARENA OPEN • 84
-              619 0531 • RACING COMMUNITY • FIFA 24 LIVE • TEKKEN WORLD TOUR
-              RULES • MAPUTO ARENA OPEN • 84 619 0531 • RACING COMMUNITY •
+              FC25 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
+              619 0531 • RACING COMMUNITY • FC25 LIVE • TEKKEN WORLD TOUR
+              RULES • NELIO GAMING LOUNGE OPEN • 84 619 0531 • RACING COMMUNITY •
             </span>
             <span>
-              FIFA 24 LIVE • TEKKEN WORLD TOUR RULES • MAPUTO ARENA OPEN • 84
-              619 0531 • RACING COMMUNITY • FIFA 24 LIVE • TEKKEN WORLD TOUR
-              RULES • MAPUTO ARENA OPEN • 84 619 0531 • RACING COMMUNITY •
+              FC25 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
+              619 0531 • RACING COMMUNITY • FC25 LIVE • TEKKEN WORLD TOUR
+              RULES • NELIO GAMING LOUNGE OPEN • 84 619 0531 • RACING COMMUNITY •
             </span>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function Home() {
               <div className="p-6 pt-0">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-headline font-black uppercase">
-                    Campeonato de FIFA
+                    Campeonato de FC25
                   </h3>
                   <span className="text-[#ffe792] font-headline font-bold text-sm">
                     16 MAIO
@@ -231,9 +231,11 @@ export default function Home() {
                     Onde se localiza a MGX Gaming?
                   </h4>
                   <p className="text-[#ababab] max-w-2xl">
-                    Estamos localizados no coração de Maputo. A nossa arena está
-                    equipada com as mais recentes consolas PS5 e setups de alta
-                    performance para garantir a melhor experiência competitiva.
+                    Somos uma plataforma de gaming online. Atualmente,
+                    estabelecemos uma parceria estratégica com o Nelio Gaming
+                    Lounge para a realização de campeonatos presenciais. O
+                    espaço está localizado no Centro Comercial Super Marés, na
+                    Costa do Sol, em Maputo.
                   </p>
                 </div>
                 <div className="bg-[#1f1f1f] p-8 border-l-4 border-[#484848]">
@@ -255,10 +257,12 @@ export default function Home() {
                     Qual é o formato do torneio?
                   </h4>
                   <p className="text-[#ababab] max-w-2xl">
-                    Fase de grupos em Round Robin, seguida de eliminatórias em
-                    duas mãos e final em jogo único. 32 vagas disponíveis.
-                    Tempo de jogo: 6 minutos por parte com Defesa Táctica
-                    obrigatória.
+                    Chave de eliminação dupla. Um jogador só é eliminado
+                    após perder duas partidas. Todos começam na chave superior;
+                    ao perder, caem para uma chave de inferior. O campeão da
+                    chave superior enfrenta o da inferior na grande final.
+                    Limite máximo de 16 jogadores. Tempo de jogo: 4 minutos
+                    por parte.
                   </p>
                 </div>
               </div>
@@ -278,10 +282,10 @@ export default function Home() {
                   </span>
                 </div>
                 <h3 className="text-3xl font-headline font-black uppercase mb-2">
-                  MAPUTO ARENA
+                  NELIO GAMING LOUNGE
                 </h3>
                 <p className="text-[#ababab] mb-6">
-                  Visita-nos e sente a energia da arena ao vivo.
+                  Visita-nos e sente a energia do gaming lounge ao vivo.
                 </p>
                 <a
                   href="https://wa.me/258846190531"

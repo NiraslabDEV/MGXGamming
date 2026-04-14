@@ -7,9 +7,9 @@ import { createClient } from "@supabase/supabase-js";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Campeonato de FIFA 24 — MGX Gaming | Maputo",
+  title: "Campeonato de FC25 — MGX Gaming | Maputo",
   description:
-    "Detalhes do Campeonato de FIFA 24 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
+    "Detalhes do Campeonato de FC25 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
 };
 
 const TOTAL_VAGAS = 32;
@@ -54,7 +54,7 @@ export default async function TorneioFifa() {
             </div>
             <h1 className="font-headline text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-none mb-6">
               CAMPEONATO DE{" "}
-              <span className="text-[#ffe792] block md:inline">FIFA 24</span>
+              <span className="text-[#ffe792] block md:inline">FC25</span>
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
@@ -254,7 +254,7 @@ export default async function TorneioFifa() {
                   LOCALIZAÇÃO
                 </h3>
                 <p className="text-[#ababab] mb-6 uppercase text-sm tracking-widest font-label">
-                  Arena MGX - Maputo, Moçambique
+                  NelioGamingLounge, Super Marés
                 </p>
                 <div className="flex items-center gap-2 text-[#ffe792] font-bold">
                   <span className="material-symbols-outlined">location_on</span>
