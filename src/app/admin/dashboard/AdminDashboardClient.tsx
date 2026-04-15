@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import ListaEsperaTab from "./ListaEsperaTab";
 
 interface Inscricao {
   id: string;
@@ -40,6 +41,7 @@ export default function AdminDashboardClient({
   const [search, setSearch] = useState("");
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [tab, setTab] = useState<"inscricoes" | "lista-espera">("inscricoes");
 
   const filtered = inscricoes.filter((i) => {
     const matchStatus =
@@ -167,12 +169,34 @@ export default function AdminDashboardClient({
           </div>
 
           <nav className="flex-1 mt-4">
-            <div className="text-black bg-yellow-400 font-bold px-4 py-3 flex items-center gap-3">
+            <button
+              onClick={() => {
+                setTab("inscricoes");
+                setSidebarOpen(false);
+              }}
+              className={`w-full text-left font-bold px-4 py-3 flex items-center gap-3 uppercase text-xs tracking-wider transition-colors ${
+                tab === "inscricoes"
+                  ? "bg-yellow-400 text-black"
+                  : "text-neutral-400 hover:bg-neutral-800"
+              }`}
+            >
               <span className="material-symbols-outlined">sports_esports</span>
-              <span className="uppercase text-xs tracking-wider">
-                FC25 Inscrições
-              </span>
-            </div>
+              <span>FC25 Inscrições</span>
+            </button>
+            <button
+              onClick={() => {
+                setTab("lista-espera");
+                setSidebarOpen(false);
+              }}
+              className={`w-full text-left font-bold px-4 py-3 flex items-center gap-3 uppercase text-xs tracking-wider transition-colors ${
+                tab === "lista-espera"
+                  ? "bg-yellow-400 text-black"
+                  : "text-neutral-400 hover:bg-neutral-800"
+              }`}
+            >
+              <span className="material-symbols-outlined">mail</span>
+              <span>Lista de Espera</span>
+            </button>
             <div className="text-neutral-400 px-4 py-3 flex items-center gap-3 opacity-40 cursor-not-allowed">
               <span className="material-symbols-outlined">videogame_asset</span>
               <span className="uppercase text-xs tracking-wider">
@@ -194,15 +218,17 @@ export default function AdminDashboardClient({
 
         {/* Main */}
         <main className="ml-0 md:ml-64 flex-1 p-4 md:p-8 overflow-y-auto">
-          {/* Page Header */}
-          <div className="mb-8 border-l-4 border-[#ffe792] pl-6 py-2">
-            <h1 className="text-4xl font-headline font-black uppercase tracking-tighter">
-              FC25 Inscrições
-            </h1>
-            <p className="text-[#ababab] font-label uppercase text-xs tracking-[0.2em] mt-1">
-              Painel de Gestão / Campeonato 2026
-            </p>
-          </div>
+          {tab === "inscricoes" ? (
+            <>
+              {/* Page Header */}
+              <div className="mb-8 border-l-4 border-[#ffe792] pl-6 py-2">
+                <h1 className="text-4xl font-headline font-black uppercase tracking-tighter">
+                  FC25 Inscrições
+                </h1>
+                <p className="text-[#ababab] font-label uppercase text-xs tracking-[0.2em] mt-1">
+                  Painel de Gestão / Campeonato 2026
+                </p>
+              </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
@@ -650,6 +676,10 @@ export default function AdminDashboardClient({
               </div>
             </div>
           </div>
+            </>
+          ) : (
+            <ListaEsperaTab />
+          )}
         </main>
       </div>
     </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ListaEsperaForm from "@/components/ListaEsperaForm";
 
 export default function Home() {
   return (
@@ -351,19 +352,9 @@ export default function Home() {
               Sê o primeiro a saber quando abrirmos novas vagas para torneios e
               eventos exclusivos. Não percas o teu lugar na arena.
             </p>
-            <form className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-              <input
-                type="email"
-                placeholder="O TEU MELHOR EMAIL"
-                className="flex-1 bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-headline focus:border-[#ffe792] focus:ring-0 outline-none transition-all placeholder:text-[#ababab]/50"
-              />
-              <button
-                type="submit"
-                className="px-12 py-4 bg-[#ffe792] text-black font-headline font-black uppercase tracking-widest hover:bg-white transition-all active:scale-95"
-              >
-                CADASTRAR
-              </button>
-            </form>
+            <div className="max-w-md mx-auto">
+              <ListaEsperaForm />
+            </div>
           </div>
         </section>
       </main>
