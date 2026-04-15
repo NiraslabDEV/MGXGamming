@@ -168,7 +168,7 @@ export default function AdminDashboardClient({
             <div className="text-black bg-yellow-400 font-bold px-4 py-3 flex items-center gap-3">
               <span className="material-symbols-outlined">sports_esports</span>
               <span className="uppercase text-xs tracking-wider">
-                FIFA Inscrições
+                FC25 Inscrições
               </span>
             </div>
             <div className="text-neutral-400 px-4 py-3 flex items-center gap-3 opacity-40 cursor-not-allowed">
@@ -195,7 +195,7 @@ export default function AdminDashboardClient({
           {/* Page Header */}
           <div className="mb-8 border-l-4 border-[#ffe792] pl-6 py-2">
             <h1 className="text-4xl font-headline font-black uppercase tracking-tighter">
-              FIFA Inscrições
+              FC25 Inscrições
             </h1>
             <p className="text-[#ababab] font-label uppercase text-xs tracking-[0.2em] mt-1">
               Painel de Gestão / Campeonato 2026
