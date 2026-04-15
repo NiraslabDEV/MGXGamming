@@ -116,12 +116,12 @@ export async function POST(req: NextRequest) {
     }
 
     // Send email (optional — skip if not configured)
-    if (process.env.EMAIL_KEY && process.env.ORGANIZER_EMAIL) {
+    if (process.env.EMAIL_KEY) {
       try {
         const resend = getResend();
         await resend.emails.send({
           from: "MGX Gaming <onboarding@resend.dev>",
-          to: process.env.ORGANIZER_EMAIL,
+          to: "mgxgaming@hotmail.com",
           subject: `Nova Inscrição: ${nome} — ${jogo}`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0e0e0e;color:#fff;padding:32px;">

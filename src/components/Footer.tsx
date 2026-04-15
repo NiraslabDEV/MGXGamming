@@ -39,10 +39,18 @@ export default function Footer() {
             Twitch
           </a>
           <a
-            href="tel:846190531"
-            className="text-yellow-400 font-bold transition-all duration-200"
+            href="mailto:mgxgaming@hotmail.com"
+            className="text-yellow-400 font-bold transition-all duration-200 flex items-center gap-2"
           >
-            Contact: 84 619 0531
+            <span className="material-symbols-outlined text-sm">mail</span>
+            mgxgaming@hotmail.com
+          </a>
+          <a
+            href="tel:846190531"
+            className="text-neutral-500 hover:text-yellow-400 transition-all duration-200 flex items-center gap-2"
+          >
+            <span className="material-symbols-outlined text-sm">phone</span>
+            84 619 0531
           </a>
         </div>
       </div>

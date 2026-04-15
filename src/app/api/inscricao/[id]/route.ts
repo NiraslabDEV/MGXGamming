@@ -64,6 +64,7 @@ export async function PATCH(
         await resend.emails.send({
           from: "MGX Gaming <onboarding@resend.dev>",
           to: inscricao.email,
+          replyTo: "mgxgaming@hotmail.com",
           subject: `✅ Inscrição Confirmada — ${inscricao.jogo} | MGX Gaming`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0e0e0e;color:#fff;padding:32px;">
@@ -92,11 +93,15 @@ export async function PATCH(
               </div>
 
               <p style="color:#ababab;font-size:13px;line-height:1.6;margin-top:24px;">
-                Qualquer dúvida, contacta-nos pelo WhatsApp: <strong style="color:#fff;">84 619 0531</strong>
+                Qualquer dúvida, contacta-nos pelo WhatsApp: <strong style="color:#fff;">84 619 0531</strong><br/>
+                Ou envia um email para: <a href="mailto:mgxgaming@hotmail.com" style="color:#ffe792;">mgxgaming@hotmail.com</a>
               </p>
 
               <div style="border-top:1px solid #262626;margin-top:32px;padding-top:16px;">
                 <p style="color:#484848;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0;">
+                  ⚠️ Não responder a este email. Para contactos, usa mgxgaming@hotmail.com
+                </p>
+                <p style="color:#484848;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:4px 0 0;">
                   © 2026 MGX Gaming · Urban Kinetic Division · Maputo
                 </p>
               </div>
@@ -107,6 +112,7 @@ export async function PATCH(
         await resend.emails.send({
           from: "MGX Gaming <onboarding@resend.dev>",
           to: inscricao.email,
+          replyTo: "mgxgaming@hotmail.com",
           subject: `❌ Inscrição Cancelada — ${inscricao.jogo} | MGX Gaming`,
           html: `
             <div style="font-family:sans-serif;max-width:600px;margin:0 auto;background:#0e0e0e;color:#fff;padding:32px;">
@@ -135,16 +141,20 @@ export async function PATCH(
                 <a href="https://wa.me/258846190531?text=Ol%C3%A1%2C+o+meu+pagamento+foi+rejeitado.+Gostava+de+resolver+a+situa%C3%A7%C3%A3o+para+o+torneio+de+${encodeURIComponent(inscricao.jogo)}." style="display:inline-block;background:#25d366;color:#fff;font-weight:900;text-decoration:none;padding:14px 28px;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">
                   Contactar via WhatsApp
                 </a>
-                <p style="color:#484848;font-size:12px;margin:8px 0 0;">ou responde a este email</p>
+                <p style="color:#484848;font-size:12px;margin:8px 0 0;">ou envia um email para mgxgaming@hotmail.com</p>
               </div>
 
               <p style="color:#ababab;font-size:13px;line-height:1.6;">
                 WhatsApp: <strong style="color:#fff;">84 619 0531</strong><br/>
+                Email: <a href="mailto:mgxgaming@hotmail.com" style="color:#ffe792;">mgxgaming@hotmail.com</a><br/>
                 Número de pagamento: <strong style="color:#ffe792;">84 619 0531</strong> (M-Pesa / E-mola) — Valor: 800 MT
               </p>
 
               <div style="border-top:1px solid #262626;margin-top:32px;padding-top:16px;">
                 <p style="color:#484848;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0;">
+                  ⚠️ Não responder a este email. Para contactos, usa mgxgaming@hotmail.com
+                </p>
+                <p style="color:#484848;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:4px 0 0;">
                   © 2026 MGX Gaming · Urban Kinetic Division · Maputo
                 </p>
               </div>
