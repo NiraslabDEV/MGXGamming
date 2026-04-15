@@ -80,6 +80,8 @@ export default function AdminDashboardClient({
     router.push("/admin");
   }
 
+  const isPdf = (url: string) => url.toLowerCase().endsWith(".pdf");
+
   const statusBadge = (status: string) => {
     if (status === "confirmado")
       return (
@@ -413,30 +415,39 @@ export default function AdminDashboardClient({
                     Comprovativo
                   </h3>
 
-                  {/* Proof image */}
+                  {/* Proof image/PDF */}
                   <div className="aspect-[3/4] bg-neutral-900 border border-white/10 relative group mb-4 overflow-hidden">
                     {selected.comprovativo_url ? (
-                      <>
+                      isPdf(selected.comprovativo_url) ? (
+                        <iframe
+                          src={selected.comprovativo_url}
+                          className="w-full h-full border-0"
+                          title="Comprovativo PDF"
+                        />
+                      ) : (
                         <img
                           src={selected.comprovativo_url}
                           alt="Comprovativo"
                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                         />
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm">
-                          <a
-                            href={selected.comprovativo_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white text-black font-black uppercase text-xs px-6 py-3 flex items-center gap-2"
-                          >
-                            <span className="material-symbols-outlined text-sm">
-                              zoom_in
-                            </span>
-                            Ver em tamanho real
-                          </a>
-                        </div>
-                      </>
-                    ) : (
+                      )
+                    ) : null}
+                    {selected.comprovativo_url && (
+                      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
+                        <a
+                          href={selected.comprovativo_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full py-2 bg-white/10 hover:bg-white/20 text-white font-black uppercase text-xs transition-colors"
+                        >
+                          <span className="material-symbols-outlined text-sm">
+                            {isPdf(selected.comprovativo_url) ? "picture_as_pdf" : "zoom_in"}
+                          </span>
+                          {isPdf(selected.comprovativo_url) ? "Abrir PDF" : "Ver em tamanho real"}
+                        </a>
+                      </div>
+                    )}
+                    {!selected.comprovativo_url && (
                       <div className="w-full h-full flex items-center justify-center text-[#484848]">
                         <div className="text-center">
                           <span className="material-symbols-outlined text-4xl block mb-2">
