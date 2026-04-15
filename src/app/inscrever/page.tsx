@@ -3,6 +3,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import InscricaoForm from "./InscricaoForm";
+import { createClient } from "@supabase/supabase-js";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Inscrição — Campeonato FC25 | MGX Gaming",
@@ -10,7 +13,26 @@ export const metadata = {
     "Inscreve-te no Campeonato de FC25 da MGX Gaming. Preenche o formulário, paga 800mt via M-Pesa e garante a tua vaga.",
 };
 
-export default function InscricaoPage() {
+const TOTAL_VAGAS = 16;
+
+export default async function InscricaoPage() {
+  let vagasRestantes = TOTAL_VAGAS;
+  try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "",
+      process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+    );
+    const { count } = await supabase
+      .from("inscricoes")
+      .select("*", { count: "exact", head: true })
+      .neq("status", "rejeitado");
+    vagasRestantes = Math.max(0, TOTAL_VAGAS - (count ?? 0));
+  } catch {
+    // fallback to default if DB unavailable
+  }
+  const preenchidas = TOTAL_VAGAS - vagasRestantes;
+  const percentagem = Math.round((preenchidas / TOTAL_VAGAS) * 100);
+
   return (
     <>
       <Navbar />
@@ -94,7 +116,7 @@ export default function InscricaoPage() {
                       Vagas
                     </span>
                     <span className="font-headline font-black text-lg">
-                      32 total
+                      16 total
                     </span>
                   </div>
                 </div>
@@ -103,16 +125,20 @@ export default function InscricaoPage() {
               {/* Vacancy Urgency */}
               <div className="bg-[#ffe792] p-8 text-black">
                 <h4 className="font-headline font-black text-xl mb-4 uppercase">
-                  APENAS 12 VAGAS RESTANTES
+                  {vagasRestantes === 0
+                    ? "VAGAS ESGOTADAS"
+                    : `APENAS ${vagasRestantes} VAGA${vagasRestantes !== 1 ? "S" : ""} RESTANTE${vagasRestantes !== 1 ? "S" : ""}`}
                 </h4>
                 <div className="h-3 bg-black/20 w-full mb-4">
-                  <div className="h-full bg-black w-[62%]" />
+                  <div className="h-full bg-black transition-all duration-500" style={{ width: `${percentagem}%` }} />
                 </div>
                 <p className="text-sm font-bold text-black/60 uppercase">
-                  62% das vagas já preenchidas
+                  {percentagem}% das vagas já preenchidas
                 </p>
                 <p className="text-xs mt-2 text-black/50">
-                  Inscreve-te agora antes que esgotem!
+                  {vagasRestantes === 0
+                    ? "Todas as vagas foram preenchidas!"
+                    : "Inscreve-te agora antes que esgotem!"}
                 </p>
               </div>
 

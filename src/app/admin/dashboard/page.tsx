@@ -30,7 +30,7 @@ export default async function AdminDashboard() {
   const rejeitados = inscricoes?.filter((i) => i.status === "rejeitado").length ?? 0;
   const ativos = confirmados + pendentes;
   const totalMt = confirmados * 800;
-  const vagasRestantes = Math.max(0, 32 - ativos);
+  const vagasRestantes = Math.max(0, 16 - ativos);
 
   return (
     <AdminDashboardClient

@@ -1,4 +1,4 @@
-import Link from "next/link";
+ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -12,7 +12,7 @@ export const metadata = {
     "Detalhes do Campeonato de FC25 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
 };
 
-const TOTAL_VAGAS = 32;
+const TOTAL_VAGAS = 16;
 
 export default async function TorneioFifa() {
   let vagasRestantes = TOTAL_VAGAS;
