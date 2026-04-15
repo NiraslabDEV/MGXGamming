@@ -269,10 +269,15 @@ export default function Home() {
             </div>
             <div className="lg:col-span-4 bg-[#262626] p-8 relative overflow-hidden flex flex-col justify-end min-h-[400px]">
               <div className="absolute inset-0 opacity-20">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh4iz1Xx0II6lRDf6xlwILG4ryHYRaw9SJfvNKGm1jgqo-a-LDezjQVOyXY77U7xmMZULEcYD5PaD97FZ24cM-h7avsJVyY4M3ycQ7I6B_xYhAW3MK20Jbnwx554Vmxqivh7YsBfNkpc7Z1CchQWbPC_ISVFKOLt8aIYM_21--0g4k-vGeQuXdsDkjIZw_bjPXEA44X46TWOPLStxfHlb0IFQDPrw"
-                  alt="Mapa urbano de Maputo"
-                  className="w-full h-full object-cover"
+                <iframe
+                  src="https://maps.google.com/maps?q=Centro+Comercial+Super+Mares+Costa+do+Sol+Maputo&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
                 />
               </div>
               <div className="relative z-10">
@@ -288,7 +293,7 @@ export default function Home() {
                   Visita-nos e sente a energia do gaming lounge ao vivo.
                 </p>
                 <a
-                  href="https://wa.me/258846190531"
+                  href="https://maps.google.com/maps?q=Centro+Comercial+Super+Mares+Costa+do+Sol+Maputo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-4 border-2 border-[#ffe792] text-[#ffe792] font-headline font-black uppercase tracking-widest hover:bg-[#ffe792] hover:text-black transition-all text-center"

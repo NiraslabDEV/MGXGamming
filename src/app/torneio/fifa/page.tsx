@@ -242,11 +242,15 @@ export default async function TorneioFifa() {
           <div className="md:col-span-5 space-y-8">
             {/* Location Card */}
             <div className="bg-[#1f1f1f] border-l-4 border-[#ffe792]">
-              <div className="h-64 w-full bg-neutral-900 overflow-hidden grayscale">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAawPpH6LpFmpCfCrgugpvwlgJW8oBlezEr_Fkmi_qRhOJolYLntofHA318O2xZtGHgHIVLtg7znErndYu0Wm-Bv7hZf5FaygSQZLxVId7jxsSmJHF1Y1unGtmBFP9VAjBnnjft3ikNNosn4HLPL1tzTA1AyM6goXrSG4sHRqLtOE4ZuNnepGyaL8hmOyg-ImaaBWPvavYCcrhg1RojRDmBgk2R5KV-V0OAlU22TFoarFkOmW4CNfS0gIWr_2IHiVi1k_YDfunLog"
-                  alt="Mapa aéreo de Maputo"
-                  className="w-full h-full object-cover"
+              <div className="h-64 w-full bg-neutral-900 overflow-hidden">
+                <iframe
+                  src="https://maps.google.com/maps?q=Centro+Comercial+Super+Mares+Costa+do+Sol+Maputo&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
               <div className="p-8">
@@ -256,12 +260,17 @@ export default async function TorneioFifa() {
                 <p className="text-[#ababab] mb-6 uppercase text-sm tracking-widest font-label">
                   NelioGamingLounge, Super Marés
                 </p>
-                <div className="flex items-center gap-2 text-[#ffe792] font-bold">
+                <a
+                  href="https://maps.google.com/maps?q=Centro+Comercial+Super+Mares+Costa+do+Sol+Maputo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-[#ffe792] font-bold hover:text-[#ffd709] transition-colors cursor-pointer"
+                >
                   <span className="material-symbols-outlined">location_on</span>
                   <span className="font-headline text-sm uppercase">
                     VER NO MAPA
                   </span>
-                </div>
+                </a>
               </div>
             </div>
 

@@ -196,11 +196,3 @@ Organizador verifica no admin
     └───────────┘
 ```
 
-### Serviços utilizados
-
-| Serviço | Para quê |
-|---|---|
-| Railway | Alojamento do site |
-| Supabase | Base de dados + armazenamento de comprovativos |
-| Resend | Envio de emails automáticos |
-| WhatsApp | Comunicação directa com jogadores |
