@@ -5,16 +5,12 @@ import { useState } from "react";
 export default function ListaEsperaForm() {
   const [email, setEmail] = useState("");
   const [nome, setNome] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
-    setMessage(null);
+    setStatus("loading");
 
     try {
       const res = await fetch("/api/lista-espera", {
@@ -25,76 +21,70 @@ export default function ListaEsperaForm() {
 
       const data = await res.json();
 
-      if (res.ok) {
-        setMessage({
-          type: "success",
-          text: data.message || "Email registado com sucesso!",
-        });
-        setEmail("");
-        setNome("");
-      } else {
-        setMessage({
-          type: "error",
-          text: data.error || "Erro ao registar.",
-        });
+      if (!res.ok) {
+        setStatus("error");
+        setMessage(data.error || "Erro ao registar.");
+        return;
       }
-    } catch (err) {
-      setMessage({
-        type: "error",
-        text: "Erro de conexão. Tenta novamente.",
-      });
-    } finally {
-      setLoading(false);
+
+      setStatus("success");
+      setMessage(data.message || "Registado com sucesso!");
+      setEmail("");
+      setNome("");
+    } catch {
+      setStatus("error");
+      setMessage("Erro de ligação. Tenta novamente.");
     }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="bg-green-900/20 border border-green-500/30 p-6 text-center">
+        <span className="material-symbols-outlined text-green-400 text-4xl block mb-2">
+          check_circle
+        </span>
+        <p className="text-green-400 font-headline font-bold uppercase text-sm">
+          {message}
+        </p>
+      </div>
+    );
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label className="block text-xs font-headline font-bold uppercase tracking-widest text-[#ababab] mb-2">
-          Email *
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          placeholder="teu@email.com"
-          className="w-full bg-[#262626] border border-[#484848] px-4 py-3 text-white placeholder:text-[#484848] focus:border-[#ffe792] focus:ring-1 focus:ring-[#ffe792] outline-none transition-colors"
-        />
-      </div>
-
-      <div>
-        <label className="block text-xs font-headline font-bold uppercase tracking-widest text-[#ababab] mb-2">
-          Nome (Opcional)
-        </label>
-        <input
-          type="text"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          placeholder="Teu nome"
-          className="w-full bg-[#262626] border border-[#484848] px-4 py-3 text-white placeholder:text-[#484848] focus:border-[#ffe792] focus:ring-1 focus:ring-[#ffe792] outline-none transition-colors"
-        />
-      </div>
-
-      {message && (
-        <div
-          className={`p-4 text-sm font-medium ${
-            message.type === "success"
-              ? "bg-green-900/30 text-green-300 border border-green-700/50"
-              : "bg-red-900/30 text-red-300 border border-red-700/50"
-          }`}
-        >
-          {message.text}
-        </div>
+      <input
+        type="text"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        placeholder="O teu nome (opcional)"
+        className="w-full px-4 py-3 bg-[#1f1f1f] border border-[#484848] text-white placeholder:text-[#484848] font-body focus:outline-none focus:ring-1 focus:ring-[#ffe792] transition-all"
+      />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="O teu email"
+        required
+        className="w-full px-4 py-3 bg-[#1f1f1f] border border-[#484848] text-white placeholder:text-[#484848] font-body focus:outline-none focus:ring-1 focus:ring-[#ffe792] transition-all"
+      />
+      {status === "error" && (
+        <p className="text-red-400 text-xs uppercase tracking-wider font-label">
+          {message}
+        </p>
       )}
-
       <button
         type="submit"
-        disabled={loading}
-        className="w-full bg-[#ffe792] text-black font-headline font-black uppercase tracking-tight py-3 px-4 hover:bg-[#ffd709] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={status === "loading"}
+        className="w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
-        {loading ? "Registando..." : "Registar na Lista de Espera"}
+        {status === "loading" ? (
+          "A registar..."
+        ) : (
+          <>
+            <span className="material-symbols-outlined text-sm">mail</span>
+            Juntar-me à Lista
+          </>
+        )}
       </button>
     </form>
   );
