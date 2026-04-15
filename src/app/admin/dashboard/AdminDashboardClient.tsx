@@ -491,9 +491,9 @@ export default function AdminDashboardClient({
                         Inscrito em
                       </span>
                       <span className="text-sm font-headline font-bold">
-                        {new Date(selected.data_inscricao).toLocaleDateString(
+                        {new Date(selected.data_inscricao).toLocaleString(
                           "pt-MZ",
-                          { day: "2-digit", month: "short", year: "numeric" }
+                          { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }
                         )}
                       </span>
                     </div>
@@ -622,8 +622,9 @@ export default function AdminDashboardClient({
                             ? "Rejeitado"
                             : "Aguarda verificação"}{" "}
                           •{" "}
-                          {new Date(i.data_inscricao).toLocaleDateString(
-                            "pt-MZ"
+                          {new Date(i.data_inscricao).toLocaleString(
+                            "pt-MZ",
+                            { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }
                           )}
                         </p>
                       </div>
