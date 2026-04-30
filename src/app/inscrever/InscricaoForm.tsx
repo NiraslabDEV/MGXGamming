@@ -15,7 +15,8 @@ interface SuccessData {
 
 export default function InscricaoForm() {
   const searchParams = useSearchParams();
-  const jogoParam = searchParams.get("jogo") || "FIFA 24";
+  const jogoParam = searchParams.get("jogo") || "FC25";
+  const preco = jogoParam === "Fortnite" ? 200 : 800;
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fileName, setFileName] = useState("");
@@ -238,7 +239,7 @@ export default function InscricaoForm() {
           DADOS DE PAGAMENTO
         </h4>
         <div className="space-y-2 text-sm text-[#ababab]">
-          <p>Valor: <span className="text-white font-bold">800 Meticais</span></p>
+          <p>Valor: <span className="text-white font-bold">{preco} Meticais</span></p>
           <p>M-Pesa / E-mola: <span className="text-[#ffe792] font-bold text-lg">84 619 0531</span></p>
           <p className="text-xs text-[#ababab]/70 mt-2">Após o pagamento, faz upload do comprovativo acima.</p>
         </div>

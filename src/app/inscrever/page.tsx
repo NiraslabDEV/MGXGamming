@@ -14,22 +14,33 @@ export const metadata = {
     "Inscreve-te no Campeonato de FC25 da MGX Gaming. Preenche o formulário, paga 800mt via M-Pesa e garante a tua vaga.",
 };
 
-const TOTAL_VAGAS = 16;
+const CONFIG: Record<string, { vagas: number; preco: number; premio: string; data: string; titulo: string }> = {
+  Fortnite: { vagas: 32, preco: 200, premio: "4.000mt", data: "Em Breve", titulo: "FORTNITE" },
+  default:   { vagas: 16, preco: 800, premio: "4.000mt", data: "16 de Maio", titulo: "FC25" },
+};
 
-export default async function InscricaoPage() {
+export default async function InscricaoPage(
+  { searchParams }: { searchParams: Promise<{ jogo?: string }> }
+) {
+  const { jogo } = await searchParams;
+  const cfg = CONFIG[jogo ?? ""] ?? CONFIG.default;
+  const TOTAL_VAGAS = cfg.vagas;
+
   let vagasRestantes = TOTAL_VAGAS;
   try {
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL || "",
       process.env.SUPABASE_SERVICE_ROLE_KEY || ""
     );
-    const { count } = await supabase
+    const query = supabase
       .from("inscricoes")
       .select("*", { count: "exact", head: true })
       .neq("status", "rejeitado");
+    if (jogo) query.eq("jogo", jogo);
+    const { count } = await query;
     vagasRestantes = Math.max(0, TOTAL_VAGAS - (count ?? 0));
   } catch {
-    // fallback to default if DB unavailable
+    // fallback
   }
   const preenchidas = TOTAL_VAGAS - vagasRestantes;
   const percentagem = Math.round((preenchidas / TOTAL_VAGAS) * 100);
@@ -57,11 +68,11 @@ export default async function InscricaoPage() {
               <div className="h-[2px] w-12 bg-[#ffe792]" />
             </div>
             <h1 className="font-headline text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-none">
-              INSCRIÇÃO <span className="text-[#ffe792]">FC25</span>
+              INSCRIÇÃO <span className="text-[#ffe792]">{cfg.titulo}</span>
             </h1>
             <p className="text-[#ababab] mt-4 text-lg max-w-xl">
               Preenche o formulário, faz o pagamento de{" "}
-              <strong className="text-white">800mt via M-Pesa</strong> e envia
+              <strong className="text-white">{cfg.preco}mt via M-Pesa</strong> e envia
               o comprovativo para garantir a tua vaga.
             </p>
           </div>
@@ -87,7 +98,7 @@ export default async function InscricaoPage() {
                       Data
                     </span>
                     <span className="font-headline font-black text-lg">
-                      16 de Maio
+                      {cfg.data}
                     </span>
                   </div>
                   <div className="flex justify-between items-center border-b border-[#484848]/30 pb-4">
@@ -95,7 +106,7 @@ export default async function InscricaoPage() {
                       Inscrição
                     </span>
                     <span className="font-headline font-black text-lg">
-                      800mt
+                      {cfg.preco}mt
                     </span>
                   </div>
                   <div className="flex justify-between items-center border-b border-[#484848]/30 pb-4">
@@ -103,7 +114,7 @@ export default async function InscricaoPage() {
                       Prémio
                     </span>
                     <span className="font-headline font-black text-lg text-[#ffe792]">
-                      4.000mt
+                      {cfg.premio}
                     </span>
                   </div>
                   <div className="flex justify-between items-center border-b border-[#484848]/30 pb-4">
@@ -119,7 +130,7 @@ export default async function InscricaoPage() {
                       Vagas
                     </span>
                     <span className="font-headline font-black text-lg">
-                      16 total
+                      {TOTAL_VAGAS} total
                     </span>
                   </div>
                 </div>
