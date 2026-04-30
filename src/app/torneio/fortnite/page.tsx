@@ -148,10 +148,6 @@ export default async function TorneioFortnite() {
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">check_circle</span>
-                    4 Partidas por jogador
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#ffe792] text-sm">check_circle</span>
                     Pontuação por eliminações e colocação
                   </li>
                   <li className="flex items-center gap-2">
@@ -168,12 +164,20 @@ export default async function TorneioFortnite() {
                     13 equipas — 39 jogadores no total
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#ffe792] text-sm">military_tech</span>
-                    Melhor pontuação nas 4 partidas vence
-                  </li>
-                  <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">trophy</span>
                     Inscrição: 200 MT por jogador
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[#ffe792] text-sm">military_tech</span>
+                    1º Lugar — 1.950 MT
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[#ffe792] text-sm">military_tech</span>
+                    2º Lugar — 1.170 MT
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[#ffe792] text-sm">military_tech</span>
+                    3º Lugar — 780 MT
                   </li>
                 </ul>
               </div>
