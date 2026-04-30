@@ -24,19 +24,9 @@ export default async function AdminDashboard() {
     .select("*")
     .order("data_inscricao", { ascending: false });
 
-  const confirmados = inscricoes?.filter((i) => i.status === "confirmado").length ?? 0;
-  const pendentes = inscricoes?.filter((i) => i.status === "pendente").length ?? 0;
-  const rejeitados = inscricoes?.filter((i) => i.status === "rejeitado").length ?? 0;
-  const ativos = confirmados + pendentes;
-  const totalMt = inscricoes
-    ?.filter((i) => i.status === "confirmado")
-    .reduce((sum, i) => sum + (i.jogo === "Fortnite" ? 200 : 800), 0) ?? 0;
-  const vagasRestantes = Math.max(0, 16 - ativos);
-
   return (
     <AdminDashboardClient
       inscricoes={inscricoes ?? []}
-      stats={{ total: ativos, totalMt, vagasRestantes, confirmados, pendentes, rejeitados }}
     />
   );
 }

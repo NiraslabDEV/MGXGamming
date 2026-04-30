@@ -16,21 +16,11 @@ interface Inscricao {
   data_inscricao: string;
 }
 
-interface Stats {
-  total: number;
-  totalMt: number;
-  vagasRestantes: number;
-  confirmados: number;
-  pendentes: number;
-  rejeitados: number;
-}
 
 export default function AdminDashboardClient({
   inscricoes,
-  stats,
 }: {
   inscricoes: Inscricao[];
-  stats: Stats;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -44,8 +34,22 @@ export default function AdminDashboardClient({
   const [selectedGame, setSelectedGame] = useState<"all" | "FC25" | "Fortnite">("all");
   const [tab, setTab] = useState<"inscricoes" | "lista-espera">("inscricoes");
 
-  const filtered = inscricoes.filter((i) => {
-    const matchGame = selectedGame === "all" || i.jogo === selectedGame;
+  // Inscricoes filtradas por jogo (para stats e tabela)
+  const byGame = inscricoes.filter((i) =>
+    selectedGame === "all" || i.jogo === selectedGame
+  );
+
+  // Stats calculados dinamicamente pelo jogo seleccionado
+  const gameConfirmados = byGame.filter((i) => i.status === "confirmado").length;
+  const gamePendentes   = byGame.filter((i) => i.status === "pendente").length;
+  const gameRejeitados  = byGame.filter((i) => i.status === "rejeitado").length;
+  const gameAtivos      = gameConfirmados + gamePendentes;
+  const gameTotalMt     = byGame
+    .filter((i) => i.status === "confirmado")
+    .reduce((sum, i) => sum + (i.jogo === "Fortnite" ? 200 : 800), 0);
+  const gameVagas       = Math.max(0, (selectedGame === "Fortnite" ? 32 : 16) - gameAtivos);
+
+  const filtered = byGame.filter((i) => {
     const matchStatus =
       filterStatus === "all" ||
       (filterStatus === "confirmado" && i.status === "confirmado") ||
@@ -53,7 +57,7 @@ export default function AdminDashboardClient({
     const matchSearch =
       i.nome.toLowerCase().includes(search.toLowerCase()) ||
       i.nickname.toLowerCase().includes(search.toLowerCase());
-    return matchGame && matchStatus && matchSearch;
+    return matchStatus && matchSearch;
   });
 
   async function updateStatus(id: string, status: "confirmado" | "rejeitado" | "pendente") {
@@ -248,59 +252,47 @@ export default function AdminDashboardClient({
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
             <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Inscritos Activos
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Inscritos Activos</p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black">{stats.total}</span>
+                <span className="text-4xl font-headline font-black">{gameAtivos}</span>
                 <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">group</span>
               </div>
             </div>
             <div className="bg-[#131313] p-5 border-l-2 border-green-500">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Aprovados
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Aprovados</p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black text-green-400">{stats.confirmados}</span>
+                <span className="text-4xl font-headline font-black text-green-400">{gameConfirmados}</span>
                 <span className="material-symbols-outlined text-green-500/30 text-4xl">verified</span>
               </div>
             </div>
             <div className="bg-[#131313] p-5 border-l-2 border-yellow-500">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Pendentes
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Pendentes</p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black text-yellow-400">{stats.pendentes}</span>
+                <span className="text-4xl font-headline font-black text-yellow-400">{gamePendentes}</span>
                 <span className="material-symbols-outlined text-yellow-500/30 text-4xl">pending</span>
               </div>
             </div>
             <div className="bg-[#131313] p-5 border-l-2 border-red-500">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Rejeitados
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Rejeitados</p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black text-red-400">{stats.rejeitados}</span>
+                <span className="text-4xl font-headline font-black text-red-400">{gameRejeitados}</span>
                 <span className="material-symbols-outlined text-red-500/30 text-4xl">cancel</span>
               </div>
             </div>
             <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Total Arrecadado
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Total Arrecadado</p>
               <div className="flex items-end justify-between">
                 <span className="text-3xl font-headline font-black">
-                  {stats.totalMt.toLocaleString()}{" "}
+                  {gameTotalMt.toLocaleString()}{" "}
                   <span className="text-base text-[#ffe792]">MT</span>
                 </span>
                 <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">payments</span>
               </div>
             </div>
             <div className="bg-[#131313] p-5 border-l-2 border-[#ffd709]">
-              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">
-                Vagas Restantes
-              </p>
+              <p className="text-[#ababab] text-[10px] uppercase font-label tracking-widest mb-1">Vagas Restantes</p>
               <div className="flex items-end justify-between">
-                <span className="text-4xl font-headline font-black">{stats.vagasRestantes}</span>
+                <span className="text-4xl font-headline font-black">{gameVagas}</span>
                 <span className="material-symbols-outlined text-[#ffe792]/30 text-4xl">event_seat</span>
               </div>
             </div>
