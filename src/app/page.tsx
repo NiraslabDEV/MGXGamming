@@ -30,19 +30,19 @@ export default function Home() {
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/inscrever"
+                href="/torneio/fifa"
                 className="px-8 py-5 bg-[#ffe792] text-black font-headline font-black text-lg tracking-tight uppercase transition-all hover:translate-x-2 active:scale-95 flex items-center gap-3"
               >
-                INSCREVER NO TORNEIO FC25
+                VER TORNEIO FC25
                 <span className="material-symbols-outlined font-bold">
                   arrow_forward
                 </span>
               </Link>
               <Link
-                href="/torneio/fifa"
+                href="/torneio/fortnite"
                 className="px-8 py-5 border border-[#484848] text-white font-headline font-bold text-lg tracking-tight uppercase hover:bg-[#262626] transition-all"
               >
-                VER DETALHES
+                VER FORTNITE
               </Link>
             </div>
           </div>
@@ -125,10 +125,10 @@ export default function Home() {
                   </div>
                 </div>
                 <Link
-                  href="/inscrever"
+                  href="/torneio/fifa"
                   className="block w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-tight hover:bg-[#ffe792] transition-colors text-center"
                 >
-                  Inscrever Agora
+                  Ver Detalhes
                 </Link>
               </div>
             </div>
