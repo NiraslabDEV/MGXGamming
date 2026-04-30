@@ -53,7 +53,7 @@ export default async function InscricaoPage(
           {/* Header */}
           <div className="mb-12">
             <Link
-              href="/torneio/fifa"
+              href={jogo === "Fortnite" ? "/torneio/fortnite" : "/torneio/fifa"}
               className="inline-flex items-center gap-2 text-[#ababab] hover:text-[#ffe792] font-headline uppercase text-xs tracking-widest transition-colors mb-6"
             >
               <span className="material-symbols-outlined text-sm">
