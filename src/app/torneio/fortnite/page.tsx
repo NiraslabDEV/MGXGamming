@@ -12,7 +12,7 @@ export const metadata = {
     "Detalhes do Campeonato de Fortnite da MGX Gaming. Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
 };
 
-const TOTAL_VAGAS = 32;
+const TOTAL_VAGAS = 39;
 
 export default async function TorneioFortnite() {
   let vagasRestantes = TOTAL_VAGAS;
@@ -41,9 +41,9 @@ export default async function TorneioFortnite() {
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoeIbcQviOSgYW5WFaPgqvVPkJaELiBgi0tYOIq2C7MrFXS66QqONjcbgpUM5OsIQkH9qZf7jdhX_tLBTCoxaFwU26QXLbKTa0J9oPyCLhVkckNFvl4ve4qe7th9oj9y0GULNHSdAtoloIA8_vuzglpGTjuVD4QEkJ3F-N9IeUAMKPoTSNgZs4CoV0K8myjjBliaGbYAhYyMdAekNixsL85LHvmJOWW4Q4RTbb1ZZ8h4fd8Yd8j-lhgDKqnxnmcafMtPtIOlHRQ"
-              alt="Arena de e-sports"
-              className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+              src="/fortnite-torneio.jpg"
+              alt="MGX Gaming — Fortnite Torneio 23 de Maio"
+              className="w-full h-full object-cover opacity-70"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/60 to-transparent" />
           </div>
@@ -61,11 +61,11 @@ export default async function TorneioFortnite() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
                 <p className="font-label text-xs text-[#ababab] uppercase tracking-widest mb-1">DATE EVENT</p>
-                <p className="font-headline text-2xl font-bold uppercase">Em Breve</p>
+                <p className="font-headline text-2xl font-bold uppercase">23 de MAIO</p>
               </div>
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
                 <p className="font-label text-xs text-[#ababab] uppercase tracking-widest mb-1">REGISTRATION</p>
-                <p className="font-headline text-2xl font-bold uppercase">800mt</p>
+                <p className="font-headline text-2xl font-bold uppercase">200mt</p>
               </div>
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
                 <p className="font-label text-xs text-[#ababab] uppercase tracking-widest mb-1">GRAND PRIZE</p>
@@ -87,7 +87,7 @@ export default async function TorneioFortnite() {
                 INSCRIÇÃO &amp; ACESSO
               </h2>
               <p className="text-[#ababab] mb-8 leading-relaxed">
-                Entra na batalha. Inscreve-te no torneio de Fortnite da MGX Gaming e prova que és o melhor Battle Royale player de Moçambique.
+                <span className="text-[#ffe792] font-bold">Só os melhores sobrevivem.</span> Inscreve-te no torneio de Fortnite da MGX Gaming — Modo Reload Solo, 4 partidas, 13 vagas. Mostre a tua habilidade, faz história, sê lendário.
               </p>
               <div className="space-y-6">
                 <div className="flex gap-6 items-start">
@@ -102,7 +102,7 @@ export default async function TorneioFortnite() {
                   <div>
                     <h3 className="font-headline font-bold uppercase text-xl mb-1">PAGAMENTO</h3>
                     <p className="text-[#ababab]">
-                      Efectua o pagamento de 800mt via M-Pesa ou E-mola para o número{" "}
+                      Efectua o pagamento de <span className="text-[#ffe792] font-bold">200mt</span> via M-Pesa ou E-mola para o número{" "}
                       <span className="text-[#ffe792] font-bold">84 619 0531</span>.
                     </p>
                   </div>
@@ -144,11 +144,11 @@ export default async function TorneioFortnite() {
                 <ul className="space-y-3 text-sm text-[#ababab]">
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">check_circle</span>
-                    Modo: Solo / Duos (a confirmar)
+                    Modo: Reload Solo
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">check_circle</span>
-                    Builds permitidos
+                    4 Partidas por jogador
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">check_circle</span>
@@ -164,16 +164,16 @@ export default async function TorneioFortnite() {
                 <h3 className="font-headline font-black uppercase text-xl mb-4 text-[#ffe792]">FORMATO</h3>
                 <ul className="space-y-3 text-sm text-[#ababab]">
                   <li className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#ffe792] text-sm">grid_view</span>
-                    Fase de grupos (pontos)
+                    <span className="material-symbols-outlined text-[#ffe792] text-sm">group</span>
+                    13 equipas — 39 jogadores no total
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">military_tech</span>
-                    Semifinais e Final
+                    Melhor pontuação nas 4 partidas vence
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-[#ffe792] text-sm">trophy</span>
-                    Campeão recebe 4.000mt
+                    Inscrição: 200 MT por jogador
                   </li>
                 </ul>
               </div>

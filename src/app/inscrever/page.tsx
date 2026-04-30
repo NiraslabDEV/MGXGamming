@@ -15,8 +15,8 @@ export const metadata = {
 };
 
 const CONFIG: Record<string, { vagas: number; preco: number; premio: string; data: string; titulo: string }> = {
-  Fortnite: { vagas: 32, preco: 200, premio: "4.000mt", data: "Em Breve", titulo: "FORTNITE" },
-  default:   { vagas: 16, preco: 800, premio: "4.000mt", data: "16 de Maio", titulo: "FC25" },
+  Fortnite: { vagas: 39, preco: 200, premio: "A definir", data: "23 de Maio", titulo: "FORTNITE" },
+  default:   { vagas: 16, preco: 800, premio: "4.000mt",   data: "16 de Maio", titulo: "FC25" },
 };
 
 export default async function InscricaoPage(

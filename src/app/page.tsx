@@ -137,12 +137,12 @@ export default function Home() {
             <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden mb-6">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc_AIdPUpIwXyV_N-fmnbOA0lk-K59s0NRDbQGjTxlulUzFumJP_QRhgpZU8TVS_bWNzJLFbaBTFgYeDoaUERGfXRUKirOQCu66fWePABkcL5vIcS_VKhHfEEvjtP710LyITA4galXp5KLz2nHKRryPrMdDLOPYdKzO3uAfB14jv2yXVEel60p5jS0voBGjqMLg8dLhUYhMpd9_HZsG4K7QytcgCWoTjEIwsczNZ9l9MBpwLRRvxI8MdwgD8ryo8eR1NYU3Txq5A"
-                  alt="Battle Royale gaming"
+                  src="/fortnite-torneio.jpg"
+                  alt="MGX Gaming — Fortnite Torneio 23 de Maio"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
-                  ACTIVE NOW
+                  23 MAIO
                 </div>
               </div>
               <div className="p-6 pt-0">
@@ -151,17 +151,17 @@ export default function Home() {
                     Fortnite
                   </h3>
                   <span className="text-[#ffe792] font-headline font-bold text-sm">
-                    EM BREVE
+                    RELOAD SOLO
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-[#1f1f1f] p-4">
                     <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">Entry Fee</span>
-                    <span className="text-xl font-headline font-bold">800mt</span>
+                    <span className="text-xl font-headline font-bold">200mt</span>
                   </div>
                   <div className="bg-[#1f1f1f] p-4">
-                    <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">Grand Prize</span>
-                    <span className="text-xl font-headline font-bold text-[#ffe792]">4.000mt</span>
+                    <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">Vagas</span>
+                    <span className="text-xl font-headline font-bold text-[#ffe792]">13 equipas</span>
                   </div>
                 </div>
                 <Link

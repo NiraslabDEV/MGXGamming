@@ -47,7 +47,7 @@ export default function AdminDashboardClient({
   const gameTotalMt     = byGame
     .filter((i) => i.status === "confirmado")
     .reduce((sum, i) => sum + (i.jogo === "Fortnite" ? 200 : 800), 0);
-  const gameVagas       = Math.max(0, (selectedGame === "Fortnite" ? 32 : 16) - gameAtivos);
+  const gameVagas       = Math.max(0, (selectedGame === "Fortnite" ? 39 : selectedGame === "all" ? 55 : 16) - gameAtivos);
 
   const filtered = byGame.filter((i) => {
     const matchStatus =
