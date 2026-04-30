@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -68,7 +69,9 @@ export default async function InscricaoPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Form */}
             <div className="lg:col-span-7">
-              <InscricaoForm />
+              <Suspense fallback={<div className="text-[#ababab]">A carregar...</div>}>
+                <InscricaoForm />
+              </Suspense>
             </div>
 
             {/* Sidebar Info */}

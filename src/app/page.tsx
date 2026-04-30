@@ -133,41 +133,43 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tekken Card */}
-            <div className="group relative bg-[#131313] p-1 border-l-4 border-[#484848] hover:-translate-y-2 transition-all duration-300">
-              <div className="relative aspect-video overflow-hidden mb-6 grayscale hover:grayscale-0 transition-all duration-500">
+            {/* Fortnite Card */}
+            <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
+              <div className="relative aspect-video overflow-hidden mb-6">
                 <img
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc_AIdPUpIwXyV_N-fmnbOA0lk-K59s0NRDbQGjTxlulUzFumJP_QRhgpZU8TVS_bWNzJLFbaBTFgYeDoaUERGfXRUKirOQCu66fWePABkcL5vIcS_VKhHfEEvjtP710LyITA4galXp5KLz2nHKRryPrMdDLOPYdKzO3uAfB14jv2yXVEel60p5jS0voBGjqMLg8dLhUYhMpd9_HZsG4K7QytcgCWoTjEIwsczNZ9l9MBpwLRRvxI8MdwgD8ryo8eR1NYU3Txq5A"
-                  alt="Arcade fight stick com botões brilhantes"
+                  alt="Battle Royale gaming"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 bg-white text-black px-3 py-1 font-headline font-bold text-xs uppercase">
-                  Em Breve
+                <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
+                  ACTIVE NOW
                 </div>
               </div>
               <div className="p-6 pt-0">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-headline font-black uppercase">
-                    Tekken 8 (PS5)
+                    Fortnite
                   </h3>
-                  <span className="text-[#ababab] font-headline font-bold text-sm">
-                    COMING SOON
+                  <span className="text-[#ffe792] font-headline font-bold text-sm">
+                    EM BREVE
                   </span>
                 </div>
-                <p className="text-sm text-[#ababab] mb-6 leading-relaxed">
-                  O derradeiro teste de habilidade. Torneio oficial seguindo as
-                  regras da{" "}
-                  <span className="text-white font-bold italic">
-                    Tekken World Tour
-                  </span>
-                  . Preparar para o combate.
-                </p>
-                <div className="flex items-center gap-3 text-xs font-headline font-black uppercase tracking-widest text-[#ffe792]/60">
-                  <span className="material-symbols-outlined text-sm">
-                    verified_user
-                  </span>
-                  Pro Rules Applied
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-[#1f1f1f] p-4">
+                    <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">Entry Fee</span>
+                    <span className="text-xl font-headline font-bold">800mt</span>
+                  </div>
+                  <div className="bg-[#1f1f1f] p-4">
+                    <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">Grand Prize</span>
+                    <span className="text-xl font-headline font-bold text-[#ffe792]">4.000mt</span>
+                  </div>
                 </div>
+                <Link
+                  href="/torneio/fortnite"
+                  className="block w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-tight hover:bg-[#ffe792] transition-colors text-center"
+                >
+                  Ver Detalhes
+                </Link>
               </div>
             </div>
 

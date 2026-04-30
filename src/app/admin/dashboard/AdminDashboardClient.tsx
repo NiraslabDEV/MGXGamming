@@ -41,9 +41,11 @@ export default function AdminDashboardClient({
   const [search, setSearch] = useState("");
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<"all" | "FC25" | "Fortnite">("all");
   const [tab, setTab] = useState<"inscricoes" | "lista-espera">("inscricoes");
 
   const filtered = inscricoes.filter((i) => {
+    const matchGame = selectedGame === "all" || i.jogo === selectedGame;
     const matchStatus =
       filterStatus === "all" ||
       (filterStatus === "confirmado" && i.status === "confirmado") ||
@@ -51,7 +53,7 @@ export default function AdminDashboardClient({
     const matchSearch =
       i.nome.toLowerCase().includes(search.toLowerCase()) ||
       i.nickname.toLowerCase().includes(search.toLowerCase());
-    return matchStatus && matchSearch;
+    return matchGame && matchStatus && matchSearch;
   });
 
   async function updateStatus(id: string, status: "confirmado" | "rejeitado" | "pendente") {
@@ -197,11 +199,24 @@ export default function AdminDashboardClient({
               <span className="material-symbols-outlined">mail</span>
               <span>Lista de Espera</span>
             </button>
-            <div className="text-neutral-400 px-4 py-3 flex items-center gap-3 opacity-40 cursor-not-allowed">
-              <span className="material-symbols-outlined">videogame_asset</span>
-              <span className="uppercase text-xs tracking-wider">
-                Tekken (Em Breve)
-              </span>
+            <div className="border-t border-white/5 mt-2 pt-2">
+              <p className="px-4 py-1 text-[10px] text-neutral-600 uppercase tracking-widest">Filtro por Jogo</p>
+              {(["all", "FC25", "Fortnite"] as const).map((game) => (
+                <button
+                  key={game}
+                  onClick={() => { setSelectedGame(game); setSidebarOpen(false); }}
+                  className={`w-full text-left font-bold px-4 py-2 flex items-center gap-3 uppercase text-xs tracking-wider transition-colors ${
+                    selectedGame === game
+                      ? "text-[#ffe792]"
+                      : "text-neutral-500 hover:text-neutral-300"
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-sm">
+                    {game === "FC25" ? "sports_soccer" : game === "Fortnite" ? "sports_esports" : "grid_view"}
+                  </span>
+                  {game === "all" ? "Todos" : game}
+                </button>
+              ))}
             </div>
           </nav>
 
