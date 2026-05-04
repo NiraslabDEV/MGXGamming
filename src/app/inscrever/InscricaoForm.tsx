@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { track } from "@/lib/track";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
@@ -43,6 +44,7 @@ export default function InscricaoForm() {
         throw new Error(data.error || "Erro ao processar inscrição.");
       }
 
+      track("form_submit", { game: data.jogo, page: "inscrever" });
       setStatus("success");
       setSuccessData({
         nome: data.nome,

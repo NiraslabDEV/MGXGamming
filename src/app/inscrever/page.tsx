@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import InscricaoForm from "./InscricaoForm";
+import PageTracker from "@/components/PageTracker";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,7 @@ export default async function InscricaoPage(
     <>
       <Navbar />
       <main className="pt-24 pb-20 kinetic-mesh">
+        <PageTracker page="inscrever" game={jogo ?? "FC25"} />
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Header */}
           <div className="mb-12">

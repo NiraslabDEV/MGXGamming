@@ -1,7 +1,8 @@
- import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PageTracker from "@/components/PageTracker";
+import TrackedLink from "@/components/TrackedLink";
 import { createClient } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +36,7 @@ export default async function TorneioFifa() {
     <>
       <Navbar />
       <main className="pt-24 pb-20 kinetic-mesh">
+        <PageTracker page="torneio_fc25" game="FC25" />
         {/* Hero Section */}
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
@@ -156,15 +158,17 @@ export default async function TorneioFifa() {
                 </div>
               </div>
               <div className="mt-12 flex flex-col sm:flex-row gap-4">
-                <Link
+                <TrackedLink
                   href="/inscrever"
+                  eventName="click_inscrever"
+                  eventGame="FC25"
                   className="inline-flex items-center justify-center bg-[#ffd709] text-black font-headline font-black text-lg uppercase tracking-tight py-5 px-10 hover:bg-[#ffe792] transition-all duration-300 active:scale-95 flex-1"
                 >
                   INSCREVER ONLINE
                   <span className="material-symbols-outlined ml-3">
                     edit_note
                   </span>
-                </Link>
+                </TrackedLink>
                 <a
                   href="https://wa.me/258846190531"
                   target="_blank"
@@ -323,12 +327,14 @@ export default async function TorneioFifa() {
             </div>
 
             {/* CTA */}
-            <Link
+            <TrackedLink
               href="/inscrever"
+              eventName="click_inscrever"
+              eventGame="FC25"
               className="block w-full py-6 bg-[#ffd709] text-black font-headline font-black text-xl uppercase tracking-tight hover:bg-[#ffe792] transition-all duration-300 active:scale-95 text-center"
             >
               GARANTIR MINHA VAGA →
-            </Link>
+            </TrackedLink>
           </div>
         </section>
       </main>

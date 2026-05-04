@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import ListaEsperaTab from "./ListaEsperaTab";
+import AnalyticsTab from "./AnalyticsTab";
 
 interface Inscricao {
   id: string;
@@ -16,11 +17,18 @@ interface Inscricao {
   data_inscricao: string;
 }
 
+interface AnalyticsEvent {
+  event_name: string;
+  game: string | null;
+  created_at: string;
+}
 
 export default function AdminDashboardClient({
   inscricoes,
+  analyticsEvents,
 }: {
   inscricoes: Inscricao[];
+  analyticsEvents: AnalyticsEvent[];
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -32,7 +40,7 @@ export default function AdminDashboardClient({
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<"all" | "FC25" | "Fortnite">("all");
-  const [tab, setTab] = useState<"inscricoes" | "lista-espera">("inscricoes");
+  const [tab, setTab] = useState<"inscricoes" | "lista-espera" | "analytics">("inscricoes");
 
   // Inscricoes filtradas por jogo (para stats e tabela)
   const byGame = inscricoes.filter((i) =>
@@ -202,6 +210,20 @@ export default function AdminDashboardClient({
             >
               <span className="material-symbols-outlined">mail</span>
               <span>Lista de Espera</span>
+            </button>
+            <button
+              onClick={() => {
+                setTab("analytics");
+                setSidebarOpen(false);
+              }}
+              className={`w-full text-left font-bold px-4 py-3 flex items-center gap-3 uppercase text-xs tracking-wider transition-colors ${
+                tab === "analytics"
+                  ? "bg-yellow-400 text-black"
+                  : "text-neutral-400 hover:bg-neutral-800"
+              }`}
+            >
+              <span className="material-symbols-outlined">bar_chart</span>
+              <span>Analytics</span>
             </button>
             <div className="border-t border-white/5 mt-2 pt-2">
               <p className="px-4 py-1 text-[10px] text-neutral-600 uppercase tracking-widest">Filtro por Jogo</p>
@@ -684,8 +706,10 @@ export default function AdminDashboardClient({
             </div>
           </div>
             </>
-          ) : (
+          ) : tab === "lista-espera" ? (
             <ListaEsperaTab />
+          ) : (
+            <AnalyticsTab events={analyticsEvents} inscricoes={inscricoes} />
           )}
         </main>
       </div>

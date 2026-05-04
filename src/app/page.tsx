@@ -1,14 +1,16 @@
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ListaEsperaForm from "@/components/ListaEsperaForm";
+import PageTracker from "@/components/PageTracker";
+import TrackedLink from "@/components/TrackedLink";
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <main className="pt-20 kinetic-mesh">
+        <PageTracker page="home" />
         {/* Hero Section */}
         <section className="relative min-h-[921px] flex items-center overflow-hidden px-6 lg:px-24 border-l-4 border-[#ffe792] mt-4">
           <div className="absolute inset-0 z-0">
@@ -29,21 +31,25 @@ export default function Home() {
               <span className="text-[#ffe792]">Moçambique</span>
             </h1>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
+              <TrackedLink
                 href="/torneio/fifa"
+                eventName="click_hero_fc25"
+                eventGame="FC25"
                 className="px-8 py-5 bg-[#ffe792] text-black font-headline font-black text-lg tracking-tight uppercase transition-all hover:translate-x-2 active:scale-95 flex items-center gap-3"
               >
                 VER TORNEIO FC25
                 <span className="material-symbols-outlined font-bold">
                   arrow_forward
                 </span>
-              </Link>
-              <Link
+              </TrackedLink>
+              <TrackedLink
                 href="/torneio/fortnite"
+                eventName="click_hero_fortnite"
+                eventGame="Fortnite"
                 className="px-8 py-5 border border-[#484848] text-white font-headline font-bold text-lg tracking-tight uppercase hover:bg-[#262626] transition-all"
               >
                 VER FORTNITE
-              </Link>
+              </TrackedLink>
             </div>
           </div>
         </section>
@@ -124,12 +130,14 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
-                <Link
+                <TrackedLink
                   href="/torneio/fifa"
+                  eventName="click_card_fc25"
+                  eventGame="FC25"
                   className="block w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-tight hover:bg-[#ffe792] transition-colors text-center"
                 >
                   Ver Detalhes
-                </Link>
+                </TrackedLink>
               </div>
             </div>
 
@@ -164,12 +172,14 @@ export default function Home() {
                     <span className="text-xl font-headline font-bold text-[#ffe792]">13 equipas</span>
                   </div>
                 </div>
-                <Link
+                <TrackedLink
                   href="/torneio/fortnite"
+                  eventName="click_card_fortnite"
+                  eventGame="Fortnite"
                   className="block w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-tight hover:bg-[#ffe792] transition-colors text-center"
                 >
                   Ver Detalhes
-                </Link>
+                </TrackedLink>
               </div>
             </div>
 
@@ -315,15 +325,16 @@ export default function Home() {
               Pronto para Dominar o Ranking?
             </h2>
             <div className="flex flex-wrap justify-center gap-6">
-              <Link
+              <TrackedLink
                 href="/inscrever"
+                eventName="click_cta_inscrever"
                 className="px-12 py-5 bg-black text-white font-headline font-black uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-4"
               >
                 INSCREVER AGORA
                 <span className="material-symbols-outlined">
                   sports_esports
                 </span>
-              </Link>
+              </TrackedLink>
               <a
                 href="https://wa.me/258846190531"
                 target="_blank"
