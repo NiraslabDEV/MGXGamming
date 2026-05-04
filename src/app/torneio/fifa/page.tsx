@@ -41,9 +41,9 @@ export default async function TorneioFifa() {
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJoeIbcQviOSgYW5WFaPgqvVPkJaELiBgi0tYOIq2C7MrFXS66QqONjcbgpUM5OsIQkH9qZf7jdhX_tLBTCoxaFwU26QXLbKTa0J9oPyCLhVkckNFvl4ve4qe7th9oj9y0GULNHSdAtoloIA8_vuzglpGTjuVD4QEkJ3F-N9IeUAMKPoTSNgZs4CoV0K8myjjBliaGbYAhYyMdAekNixsL85LHvmJOWW4Q4RTbb1ZZ8h4fd8Yd8j-lhgDKqnxnmcafMtPtIOlHRQ"
-              alt="Arena de e-sports com iluminação neon amarela"
-              className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+              src="/fc25-torneio.jpg"
+              alt="Campeonato FC25 MGX Gaming — Nelio Gaming Lounge, Maputo"
+              className="w-full h-full object-cover opacity-80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/60 to-transparent" />
           </div>
@@ -86,6 +86,21 @@ export default async function TorneioFifa() {
             </div>
           </div>
         </section>
+
+        {/* Official Poster */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-[2px] w-12 bg-[#ffe792]" />
+            <span className="font-label text-xs text-[#ffe792] uppercase tracking-[0.2em] font-bold">Cartaz Oficial</span>
+          </div>
+          <div className="max-w-xs">
+            <img
+              src="/poster-fc25.jpg"
+              alt="Cartaz Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
 
         {/* Content Bento Grid */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8">

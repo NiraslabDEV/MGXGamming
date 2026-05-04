@@ -15,8 +15,8 @@ export default function Home() {
         <section className="relative min-h-[921px] flex items-center overflow-hidden px-6 lg:px-24 border-l-4 border-[#ffe792] mt-4">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUVuGrlS2VDgbKzUP7ZjG3Xi-zY-eLuunCg9_YNXKeAR3-Sfd-Q5czWFalgwC4G-U_g2pZiwQiRwt-mkyJRIisTvGtd1Jygnab_gV71VnEdLrqAEp0BuRubYExTWeMQjDvkVl9UdDF5-SNIRtrBQ5hh_AyOMjGRxqT_NfKYPPbFQJpALRnxNuowAp3OQ18I_2y83wCfWHSX9AVFdp_vqXAw6EvS2LbrjA7XCbChqJS9MLS2v5nnPcurt7B9zlgLJ2JiuMgPMcEKA"
-              alt="Gamer profissional em sala escura com neon amarelo"
+              src="/hero-homepage.png"
+              alt="Gamer MGX Gaming — Maputo"
               className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0e0e0e] via-[#0e0e0e]/80 to-transparent" />
@@ -95,8 +95,8 @@ export default function Home() {
             <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden mb-6">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTuvMuGgMB-1Sgt9p6f9IFS3WN9fzTdo0zxgQfMT_S1UhOXFQaSzWWV1YIWc0inNwlxMA55i8Pesil4XKG-4H7BGXQV9esd6sn914LdQE3l2JaWcuhBNicaFyaVMHn_MqmGZHTrArm81Db9sEnKB3WqemcsxLgfghPFwTrq-uOaOfQMf9SQv3wpS5ULFC1gHs3-TD8il4rMcY-eNRuTN-3OMMNtNByyhXGTW8AJFYVZHxLdl2cduIw4RoUKKZ7sGIjQdAo5fVXdw"
-                  alt="Campo de futebol moderno"
+                  src="/fc25-card.png"
+                  alt="Campeonato FC25 — MGX Gaming"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
@@ -145,8 +145,8 @@ export default function Home() {
             <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden mb-6">
                 <img
-                  src="/fortnite-torneio.jpg"
-                  alt="MGX Gaming — Fortnite Torneio 23 de Maio"
+                  src="/fortnite-card.png"
+                  alt="Fortnite Reload Solo — MGX Gaming 23 de Maio"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
@@ -184,45 +184,75 @@ export default function Home() {
             </div>
 
             {/* Community Card */}
-            <div className="bg-[#ffe792] p-8 flex flex-col justify-between">
-              <div>
-                <h3 className="text-4xl font-headline font-black text-black uppercase leading-none mb-6">
-                  Comunidade MGX
+            <div className="bg-[#0e0e0e] border border-[#262626] border-l-4 border-l-[#ffe792] flex flex-col justify-between overflow-hidden">
+              <div className="p-8">
+                <h3 className="text-3xl font-headline font-black text-white uppercase leading-none mb-2">
+                  Merch MGX
                 </h3>
-                <p className="text-[#5b4b00] font-medium mb-8">
-                  Junta-te à maior rede de gamers urbanos em Maputo. Racing,
-                  Battle Royale e muito mais.
+                <p className="text-[#ababab] text-sm mb-6 uppercase tracking-widest font-label">
+                  Mozambique Gaming Experience
                 </p>
               </div>
-              <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-0">
+                <div className="relative overflow-hidden aspect-square bg-[#131313]">
+                  <img
+                    src="/mgx-tshirt.jpg"
+                    alt="T-shirt MGX Gaming"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                    <p className="text-white text-[10px] font-headline font-black uppercase tracking-widest">T-Shirt</p>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden aspect-square bg-[#131313]">
+                  <img
+                    src="/mgx-mouse.jpg"
+                    alt="Mouse MGX Gaming"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                    <p className="text-white text-[10px] font-headline font-black uppercase tracking-widest">Mouse</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
                 <a
                   href="https://wa.me/258846190531"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-black text-white group hover:bg-neutral-800 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#ffe792] text-black font-headline font-black uppercase text-sm tracking-tight hover:bg-[#ffd709] transition-colors"
                 >
-                  <span className="font-headline font-bold uppercase text-sm">
-                    Racing Games
-                  </span>
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                    add_circle
-                  </span>
-                </a>
-                <a
-                  href="https://wa.me/258846190531"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 bg-black text-white group hover:bg-neutral-800 transition-colors"
-                >
-                  <span className="font-headline font-bold uppercase text-sm">
-                    Free Fire Moz
-                  </span>
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                    add_circle
-                  </span>
+                  <span className="material-symbols-outlined text-sm">shopping_bag</span>
+                  Encomendar via WhatsApp
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Official Posters */}
+        <section className="py-16 px-6 lg:px-24">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="h-1 w-12 bg-[#ffe792]" />
+            <span className="font-headline font-black text-[#ffe792] tracking-widest text-sm uppercase">
+              Cartazes Oficiais
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
+            <TrackedLink href="/torneio/fifa" eventName="click_poster_fc25" eventGame="FC25" className="block group">
+              <img
+                src="/poster-fc25.jpg"
+                alt="Poster Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+                className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+              />
+            </TrackedLink>
+            <TrackedLink href="/torneio/fortnite" eventName="click_poster_fortnite" eventGame="Fortnite" className="block group">
+              <img
+                src="/poster-fortnite.jpg"
+                alt="Poster Oficial — Fortnite Reload Solo · 23 de Maio · MGX Gaming"
+                className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+              />
+            </TrackedLink>
           </div>
         </section>
 

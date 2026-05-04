@@ -43,9 +43,9 @@ export default async function TorneioFortnite() {
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
             <img
-              src="/fortnite-torneio.jpg"
-              alt="MGX Gaming — Fortnite Torneio 23 de Maio"
-              className="w-full h-full object-cover opacity-70"
+              src="/fortnite-torneio-hero.png"
+              alt="Fortnite Reload Solo — MGX Gaming 23 de Maio, Maputo"
+              className="w-full h-full object-cover opacity-80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/60 to-transparent" />
           </div>
@@ -76,6 +76,21 @@ export default async function TorneioFortnite() {
             </div>
           </div>
         </section>
+
+        {/* Official Poster */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-[2px] w-12 bg-[#ffe792]" />
+            <span className="font-label text-xs text-[#ffe792] uppercase tracking-[0.2em] font-bold">Cartaz Oficial</span>
+          </div>
+          <div className="max-w-xs">
+            <img
+              src="/poster-fortnite.jpg"
+              alt="Cartaz Oficial — Fortnite Reload Solo · 23 de Maio · MGX Gaming"
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
 
         <section className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Registration Guide */}
