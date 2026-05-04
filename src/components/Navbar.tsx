@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -10,9 +11,11 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-l-4 border-yellow-400 shadow-[0_0_30px_rgba(255,215,0,0.1)] flex justify-between items-center px-6 py-4">
       <div className="flex items-center gap-8">
         <Link href="/" className="flex items-center">
-          <img
+          <Image
             src="/Logo-Mgx.jpeg"
             alt="MGX Gaming"
+            width={40}
+            height={40}
             className="h-10 w-auto object-contain"
           />
         </Link>

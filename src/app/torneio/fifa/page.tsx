@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -40,10 +41,13 @@ export default async function TorneioFifa() {
         {/* Hero Section */}
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/fc25-torneio.jpg"
               alt="Campeonato FC25 MGX Gaming — Nelio Gaming Lounge, Maputo"
-              className="w-full h-full object-cover opacity-80"
+              fill
+              className="object-cover opacity-80"
+              sizes="100vw"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/60 to-transparent" />
           </div>
@@ -94,10 +98,13 @@ export default async function TorneioFifa() {
             <span className="font-label text-xs text-[#ffe792] uppercase tracking-[0.2em] font-bold">Cartaz Oficial</span>
           </div>
           <div className="max-w-xs">
-            <img
+            <Image
               src="/poster-fc25.jpg"
               alt="Cartaz Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+              width={600}
+              height={850}
               className="w-full h-auto"
+              sizes="300px"
             />
           </div>
         </div>

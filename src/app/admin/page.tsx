@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
@@ -33,9 +34,11 @@ export default function AdminLogin() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="mb-12 text-center flex flex-col items-center gap-3">
-          <img
+          <Image
             src="/Logo-Mgx.jpeg"
             alt="MGX Gaming"
+            width={96}
+            height={96}
             className="h-24 w-24 object-contain rounded-full"
           />
           <p className="text-[#ababab] text-xs uppercase tracking-[0.3em] font-label">

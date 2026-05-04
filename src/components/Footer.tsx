@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-neutral-950 w-full">
       <div className="bg-gradient-to-r from-yellow-400 to-transparent h-1 w-full" />
       <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 text-sm tracking-wide">
         <div className="flex flex-col items-center md:items-start gap-4">
-          <img
+          <Image
             src="/Logo-Mgx.jpeg"
             alt="MGX Gaming"
+            width={56}
+            height={56}
             className="h-14 w-auto object-contain"
           />
           <p className="text-neutral-500 max-w-xs text-center md:text-left uppercase text-xs">

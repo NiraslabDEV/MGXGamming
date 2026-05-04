@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function SplashScreen() {
   const [phase, setPhase] = useState<"hidden" | "in" | "hold" | "out">("hidden");
@@ -28,9 +29,11 @@ export default function SplashScreen() {
       }}
     >
       {/* Logo */}
-      <img
+      <Image
         src="/Logo-Mgx.jpeg"
         alt="MGX Gaming"
+        width={144}
+        height={144}
         className="w-36 h-36 object-contain rounded-full"
         style={{
           transform: phase === "in" ? "scale(0.7)" : "scale(1)",

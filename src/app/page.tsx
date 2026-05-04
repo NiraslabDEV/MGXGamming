@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -14,10 +15,13 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative min-h-[921px] flex items-center overflow-hidden px-6 lg:px-24 border-l-4 border-[#ffe792] mt-4">
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/hero-homepage.png"
               alt="Gamer MGX Gaming — Maputo"
-              className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+              fill
+              className="object-cover opacity-40 mix-blend-luminosity"
+              sizes="100vw"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0e0e0e] via-[#0e0e0e]/80 to-transparent" />
           </div>
@@ -94,10 +98,12 @@ export default function Home() {
             {/* FIFA Card */}
             <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden mb-6">
-                <img
+                <Image
                   src="/fc25-card.png"
                   alt="Campeonato FC25 — MGX Gaming"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
                   ACTIVE NOW
@@ -144,10 +150,12 @@ export default function Home() {
             {/* Fortnite Card */}
             <div className="group relative bg-[#131313] p-1 border-l-4 border-[#ffe792] hover:-translate-y-2 transition-all duration-300">
               <div className="relative aspect-video overflow-hidden mb-6">
-                <img
+                <Image
                   src="/fortnite-card.png"
                   alt="Fortnite Reload Solo — MGX Gaming 23 de Maio"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute top-4 left-4 bg-[#ffe792] text-black px-3 py-1 font-headline font-bold text-xs uppercase">
                   23 MAIO
@@ -195,20 +203,24 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-2 gap-0">
                 <div className="relative overflow-hidden aspect-square bg-[#131313]">
-                  <img
+                  <Image
                     src="/mgx-tshirt.jpg"
                     alt="T-shirt MGX Gaming"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 50vw, 200px"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
                     <p className="text-white text-[10px] font-headline font-black uppercase tracking-widest">T-Shirt</p>
                   </div>
                 </div>
                 <div className="relative overflow-hidden aspect-square bg-[#131313]">
-                  <img
+                  <Image
                     src="/mgx-mouse.jpg"
                     alt="Mouse MGX Gaming"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 50vw, 200px"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
                     <p className="text-white text-[10px] font-headline font-black uppercase tracking-widest">Mouse</p>
@@ -240,17 +252,23 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
             <TrackedLink href="/torneio/fifa" eventName="click_poster_fc25" eventGame="FC25" className="block group">
-              <img
+              <Image
                 src="/poster-fc25.jpg"
                 alt="Poster Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+                width={600}
+                height={850}
                 className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw, 300px"
               />
             </TrackedLink>
             <TrackedLink href="/torneio/fortnite" eventName="click_poster_fortnite" eventGame="Fortnite" className="block group">
-              <img
+              <Image
                 src="/poster-fortnite.jpg"
                 alt="Poster Oficial — Fortnite Reload Solo · 23 de Maio · MGX Gaming"
+                width={600}
+                height={850}
                 className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw, 300px"
               />
             </TrackedLink>
           </div>
