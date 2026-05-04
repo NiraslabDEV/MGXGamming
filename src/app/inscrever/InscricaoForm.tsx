@@ -16,7 +16,7 @@ interface SuccessData {
 
 export default function InscricaoForm() {
   const searchParams = useSearchParams();
-  const jogoParam = searchParams.get("jogo") || "FC25";
+  const jogoParam = searchParams.get("jogo") || "FC26";
   const preco = jogoParam === "Fortnite" ? 200 : 800;
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -197,7 +197,7 @@ export default function InscricaoForm() {
           defaultValue={jogoParam}
           className="w-full bg-[#262626] border-2 border-[#484848] px-6 py-4 text-white font-body focus:border-[#ffe792] focus:ring-0 outline-none transition-all"
         >
-          <option value="FC25">FC25</option>
+          <option value="FC26">FC26</option>
           <option value="Fortnite">Fortnite</option>
           <option value="Tekken 8" disabled>Tekken 8 (Em Breve)</option>
         </select>

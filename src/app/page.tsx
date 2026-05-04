@@ -38,10 +38,10 @@ export default function Home() {
               <TrackedLink
                 href="/torneio/fifa"
                 eventName="click_hero_fc25"
-                eventGame="FC25"
+                eventGame="FC26"
                 className="px-8 py-5 bg-[#ffe792] text-black font-headline font-black text-lg tracking-tight uppercase transition-all hover:translate-x-2 active:scale-95 flex items-center gap-3"
               >
-                VER TORNEIO FC25
+                VER TORNEIO FC26
                 <span className="material-symbols-outlined font-bold">
                   arrow_forward
                 </span>
@@ -62,13 +62,13 @@ export default function Home() {
         <div className="bg-black py-4 flex overflow-hidden whitespace-nowrap border-y border-[#484848]/30">
           <div className="flex gap-12 animate-marquee font-headline font-black text-[#ffe792]/40 uppercase tracking-widest text-sm italic">
             <span>
-              FC25 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
-              619 0531 • RACING COMMUNITY • FC25 LIVE • TEKKEN WORLD TOUR
+              FC26 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
+              619 0531 • RACING COMMUNITY • FC26 LIVE • TEKKEN WORLD TOUR
               RULES • NELIO GAMING LOUNGE OPEN • 84 619 0531 • RACING COMMUNITY •
             </span>
             <span>
-              FC25 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
-              619 0531 • RACING COMMUNITY • FC25 LIVE • TEKKEN WORLD TOUR
+              FC26 LIVE • TEKKEN WORLD TOUR RULES • NELIO GAMING LOUNGE OPEN • 84
+              619 0531 • RACING COMMUNITY • FC26 LIVE • TEKKEN WORLD TOUR
               RULES • NELIO GAMING LOUNGE OPEN • 84 619 0531 • RACING COMMUNITY •
             </span>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
               <div className="relative aspect-video overflow-hidden mb-6">
                 <Image
                   src="/fc25-card.png"
-                  alt="Campeonato FC25 — MGX Gaming"
+                  alt="Campeonato FC26 — MGX Gaming"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -112,7 +112,7 @@ export default function Home() {
               <div className="p-6 pt-0">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-headline font-black uppercase">
-                    Campeonato de FC25
+                    Campeonato de FC26
                   </h3>
                   <span className="text-[#ffe792] font-headline font-bold text-sm">
                     16 MAIO
@@ -139,7 +139,7 @@ export default function Home() {
                 <TrackedLink
                   href="/torneio/fifa"
                   eventName="click_card_fc25"
-                  eventGame="FC25"
+                  eventGame="FC26"
                   className="block w-full py-4 bg-[#ffd709] text-black font-headline font-black uppercase tracking-tight hover:bg-[#ffe792] transition-colors text-center"
                 >
                   Ver Detalhes
@@ -251,10 +251,10 @@ export default function Home() {
             </span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-            <TrackedLink href="/torneio/fifa" eventName="click_poster_fc25" eventGame="FC25" className="block group">
+            <TrackedLink href="/torneio/fifa" eventName="click_poster_fc25" eventGame="FC26" className="block group">
               <Image
                 src="/poster-fc25.jpg"
-                alt="Poster Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+                alt="Poster Oficial — Campeonato FC26 · 16 de Maio · MGX Gaming"
                 width={600}
                 height={850}
                 className="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300"

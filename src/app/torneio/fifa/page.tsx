@@ -9,9 +9,9 @@ import { createClient } from "@supabase/supabase-js";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Campeonato de FC25 — MGX Gaming | Maputo",
+  title: "Campeonato de FC26 — MGX Gaming | Maputo",
   description:
-    "Detalhes do Campeonato de FC25 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
+    "Detalhes do Campeonato de FC26 da MGX Gaming. 16 de Maio em Maputo. Prémio de 4.000mt. Inscrição: 800mt via M-Pesa.",
 };
 
 const TOTAL_VAGAS = 16;
@@ -26,6 +26,7 @@ export default async function TorneioFifa() {
     const { count } = await supabase
       .from("inscricoes")
       .select("*", { count: "exact", head: true })
+      .in("jogo", ["FC25", "FC26"])
       .neq("status", "rejeitado");
     vagasRestantes = Math.max(0, TOTAL_VAGAS - (count ?? 0));
   } catch {
@@ -37,13 +38,13 @@ export default async function TorneioFifa() {
     <>
       <Navbar />
       <main className="pt-24 pb-20 kinetic-mesh">
-        <PageTracker page="torneio_fc25" game="FC25" />
+        <PageTracker page="torneio_fc25" game="FC26" />
         {/* Hero Section */}
         <section className="relative w-full h-[716px] flex flex-col justify-end overflow-hidden mb-12">
           <div className="absolute inset-0 z-0">
             <Image
               src="/fc25-torneio.jpg"
-              alt="Campeonato FC25 MGX Gaming — Nelio Gaming Lounge, Maputo"
+              alt="Campeonato FC26 MGX Gaming — Nelio Gaming Lounge, Maputo"
               fill
               className="object-cover opacity-80"
               sizes="100vw"
@@ -60,7 +61,7 @@ export default async function TorneioFifa() {
             </div>
             <h1 className="font-headline text-5xl md:text-8xl font-black italic tracking-tighter uppercase leading-none mb-6">
               CAMPEONATO DE{" "}
-              <span className="text-[#ffe792] block md:inline">FC25</span>
+              <span className="text-[#ffe792] block md:inline">FC26</span>
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
@@ -100,7 +101,7 @@ export default async function TorneioFifa() {
           <div className="max-w-xs">
             <Image
               src="/poster-fc25.jpg"
-              alt="Cartaz Oficial — Campeonato FC25 · 16 de Maio · MGX Gaming"
+              alt="Cartaz Oficial — Campeonato FC26 · 16 de Maio · MGX Gaming"
               width={600}
               height={850}
               className="w-full h-auto"
@@ -183,7 +184,7 @@ export default async function TorneioFifa() {
                 <TrackedLink
                   href="/inscrever"
                   eventName="click_inscrever"
-                  eventGame="FC25"
+                  eventGame="FC26"
                   className="inline-flex items-center justify-center bg-[#ffd709] text-black font-headline font-black text-lg uppercase tracking-tight py-5 px-10 hover:bg-[#ffe792] transition-all duration-300 active:scale-95 flex-1"
                 >
                   INSCREVER ONLINE
@@ -352,7 +353,7 @@ export default async function TorneioFifa() {
             <TrackedLink
               href="/inscrever"
               eventName="click_inscrever"
-              eventGame="FC25"
+              eventGame="FC26"
               className="block w-full py-6 bg-[#ffd709] text-black font-headline font-black text-xl uppercase tracking-tight hover:bg-[#ffe792] transition-all duration-300 active:scale-95 text-center"
             >
               GARANTIR MINHA VAGA →

@@ -40,13 +40,15 @@ export default function AdminDashboardClient({
   const [search, setSearch] = useState("");
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedGame, setSelectedGame] = useState<"all" | "FC25" | "Fortnite">("all");
+  const [selectedGame, setSelectedGame] = useState<"all" | "FC26" | "Fortnite">("all");
   const [tab, setTab] = useState<"inscricoes" | "lista-espera" | "analytics">("inscricoes");
 
-  // Inscricoes filtradas por jogo (para stats e tabela)
-  const byGame = inscricoes.filter((i) =>
-    selectedGame === "all" || i.jogo === selectedGame
-  );
+  // Inscricoes filtradas por jogo — FC26 inclui registos legados FC25
+  const byGame = inscricoes.filter((i) => {
+    if (selectedGame === "all") return true;
+    if (selectedGame === "FC26") return i.jogo === "FC26" || i.jogo === "FC25";
+    return i.jogo === selectedGame;
+  });
 
   // Stats calculados dinamicamente pelo jogo seleccionado
   const gameConfirmados = byGame.filter((i) => i.status === "confirmado").length;
@@ -204,7 +206,7 @@ export default function AdminDashboardClient({
               }`}
             >
               <span className="material-symbols-outlined">sports_esports</span>
-              <span>FC25 Inscrições</span>
+              <span>Inscrições</span>
             </button>
             <button
               onClick={() => {
@@ -236,7 +238,7 @@ export default function AdminDashboardClient({
             </button>
             <div className="border-t border-white/5 mt-2 pt-2">
               <p className="px-4 py-1 text-[10px] text-neutral-600 uppercase tracking-widest">Filtro por Jogo</p>
-              {(["all", "FC25", "Fortnite"] as const).map((game) => (
+              {(["all", "FC26", "Fortnite"] as const).map((game) => (
                 <button
                   key={game}
                   onClick={() => { setSelectedGame(game); setSidebarOpen(false); }}
@@ -247,7 +249,7 @@ export default function AdminDashboardClient({
                   }`}
                 >
                   <span className="material-symbols-outlined text-sm">
-                    {game === "FC25" ? "sports_soccer" : game === "Fortnite" ? "sports_esports" : "grid_view"}
+                    {game === "FC26" ? "sports_soccer" : game === "Fortnite" ? "sports_esports" : "grid_view"}
                   </span>
                   {game === "all" ? "Todos" : game}
                 </button>
@@ -273,7 +275,7 @@ export default function AdminDashboardClient({
               {/* Page Header */}
               <div className="mb-8 border-l-4 border-[#ffe792] pl-6 py-2">
                 <h1 className="text-4xl font-headline font-black uppercase tracking-tighter">
-                  FC25 Inscrições
+                  {selectedGame === "all" ? "Todas as Inscrições" : `${selectedGame} Inscrições`}
                 </h1>
                 <p className="text-[#ababab] font-label uppercase text-xs tracking-[0.2em] mt-1">
                   Painel de Gestão / Campeonato 2026
