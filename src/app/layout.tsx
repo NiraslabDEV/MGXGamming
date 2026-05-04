@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SplashScreen from "@/components/SplashScreen";
 
 export const metadata: Metadata = {
   title: "MGX Gaming — Campeonato de FIFA 24 | Maputo",
@@ -15,8 +16,6 @@ export default function RootLayout({
   return (
     <html lang="pt" className="dark h-full">
       <head>
-        <link rel="icon" href="/Logo-Mgx.jpeg" type="image/jpeg" />
-        <link rel="apple-touch-icon" href="/Logo-Mgx.jpeg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -29,6 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[#0e0e0e] text-white min-h-full flex flex-col">
+        <SplashScreen />
         {children}
       </body>
     </html>
