@@ -10,7 +10,7 @@
 
 **Estética geral:** Esports urbano africano · Maputo, Moçambique · Cinematográfico · Alta intensidade · Minimalista brutal
 
-**Logo:** Tens o logo MGX Gaming — coloca-o em TUDO que for peça de marca (roupa, periféricos, posters). Quando o prompt diz `[LOGO MGX]`, substitui pelo logo que tens.
+**Logo:** Tens o logo MGX Gaming — coloca-o em TUDO que for peça de marca (roupa, periféricos, posters). Quando o prompt diz `(Logo-Mgx.jpeg — círculo preto com "MGX GAMING" em dourado com raios elétricos)`, substitui pelo logo que tens.
 
 ---
 
@@ -103,7 +103,7 @@ Fotografia ultra-wide cinematográfica. Vários jovens africanos em competição
 
 ### Para GPT Image / DALL-E:
 ```
-Professional product photography of a premium athletic esports t-shirt. The t-shirt is jet black with a slim athletic cut. The MGX Gaming logo [use the provided logo] is printed on the center chest in bold golden-amber (#FFE792). On the back, small text "MOZAMBIQUE GAMING EXPERIENCE" in golden-amber. The shirt is displayed on a dark invisible mannequin or floating flat-lay. Background: pure deep black (#0e0e0e). Dramatic studio lighting from upper-right with a subtle golden rim light matching the logo color. Ultra-realistic product photography. No other colors. Sharp detail on the fabric texture and logo.
+Professional product photography of a premium athletic esports t-shirt. The t-shirt is jet black with a slim athletic cut. The MGX Gaming logo (Logo-Mgx.jpeg — círculo preto com "MGX GAMING" em dourado com raios elétricos) is printed on the center chest in bold golden-amber (#FFE792). On the back, small text "MOZAMBIQUE GAMING EXPERIENCE" in golden-amber. The shirt is displayed on a dark invisible mannequin or floating flat-lay. Background: pure deep black (#0e0e0e). Dramatic studio lighting from upper-right with a subtle golden rim light matching the logo color. Ultra-realistic product photography. No other colors. Sharp detail on the fabric texture and logo.
 ```
 
 ### Para NanoBanana Pro:

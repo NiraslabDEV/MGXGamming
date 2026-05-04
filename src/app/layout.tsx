@@ -15,6 +15,8 @@ export default function RootLayout({
   return (
     <html lang="pt" className="dark h-full">
       <head>
+        <link rel="icon" href="/Logo-Mgx.jpeg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/Logo-Mgx.jpeg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

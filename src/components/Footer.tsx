@@ -4,9 +4,11 @@ export default function Footer() {
       <div className="bg-gradient-to-r from-yellow-400 to-transparent h-1 w-full" />
       <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 text-sm tracking-wide">
         <div className="flex flex-col items-center md:items-start gap-4">
-          <span className="text-xl font-black text-yellow-400 font-headline uppercase tracking-tighter">
-            MGX GAMING
-          </span>
+          <img
+            src="/Logo-Mgx.jpeg"
+            alt="MGX Gaming"
+            className="h-14 w-auto object-contain"
+          />
           <p className="text-neutral-500 max-w-xs text-center md:text-left uppercase text-xs">
             © 2024 MGX GAMING. URBAN KINETIC DIVISION. POWERING THE NEXT
             GENERATION OF AFRICAN ESPORTS.

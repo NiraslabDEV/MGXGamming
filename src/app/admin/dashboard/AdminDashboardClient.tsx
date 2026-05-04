@@ -129,9 +129,11 @@ export default function AdminDashboardClient({
           >
             menu
           </button>
-          <span className="text-2xl font-black text-yellow-400 italic font-headline uppercase tracking-wider">
-            MGX Gaming
-          </span>
+          <img
+            src="/Logo-Mgx.jpeg"
+            alt="MGX Gaming"
+            className="h-9 w-auto object-contain"
+          />
         </div>
         <div className="flex items-center gap-4">
           <div className="relative hidden md:block">
@@ -168,9 +170,11 @@ export default function AdminDashboardClient({
         <aside className={`fixed left-0 top-0 h-full w-64 bg-neutral-950 pt-16 flex flex-col font-headline font-medium z-40 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}>
           <div className="p-6 bg-neutral-900 border-b border-white/5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-[#ffe792] flex items-center justify-center font-black text-black text-lg">
-                M
-              </div>
+              <img
+                src="/Logo-Mgx.jpeg"
+                alt="MGX Gaming"
+                className="w-10 h-10 object-contain rounded-sm"
+              />
               <div>
                 <p className="text-yellow-400 font-black text-sm uppercase">
                   MGX Admin

@@ -32,10 +32,12 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-[#0e0e0e] kinetic-mesh flex items-center justify-center px-6">
       <div className="w-full max-w-sm">
         {/* Logo */}
-        <div className="mb-12 text-center">
-          <p className="text-3xl font-black italic text-yellow-400 tracking-tighter font-headline uppercase mb-1">
-            MGX GAMING
-          </p>
+        <div className="mb-12 text-center flex flex-col items-center gap-3">
+          <img
+            src="/Logo-Mgx.jpeg"
+            alt="MGX Gaming"
+            className="h-24 w-24 object-contain rounded-full"
+          />
           <p className="text-[#ababab] text-xs uppercase tracking-[0.3em] font-label">
             Tournament Control Panel
           </p>

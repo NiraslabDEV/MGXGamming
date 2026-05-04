@@ -9,11 +9,12 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl border-l-4 border-yellow-400 shadow-[0_0_30px_rgba(255,215,0,0.1)] flex justify-between items-center px-6 py-4">
       <div className="flex items-center gap-8">
-        <Link
-          href="/"
-          className="text-2xl font-black italic text-yellow-400 tracking-tighter font-headline uppercase"
-        >
-          MGX GAMING
+        <Link href="/" className="flex items-center">
+          <img
+            src="/Logo-Mgx.jpeg"
+            alt="MGX Gaming"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
         <div className="hidden md:flex gap-6">
           <Link
