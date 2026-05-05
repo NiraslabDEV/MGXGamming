@@ -5,6 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ListaEsperaForm from "@/components/ListaEsperaForm";
 import PageTracker from "@/components/PageTracker";
 import TrackedLink from "@/components/TrackedLink";
+import CountdownTimer from "@/components/CountdownTimer";
 
 export default function Home() {
   return (
@@ -118,6 +119,9 @@ export default function Home() {
                     16 MAIO
                   </span>
                 </div>
+                <div className="mb-5">
+                  <CountdownTimer targetDate="2026-05-16T10:00:00" label="Faltam" compact />
+                </div>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-[#1f1f1f] p-4">
                     <span className="block text-[10px] text-[#ababab] font-headline font-black uppercase tracking-widest mb-1">
@@ -169,6 +173,9 @@ export default function Home() {
                   <span className="text-[#ffe792] font-headline font-bold text-sm">
                     RELOAD SOLO
                   </span>
+                </div>
+                <div className="mb-5">
+                  <CountdownTimer targetDate="2026-05-23T10:00:00" label="Faltam" compact />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-[#1f1f1f] p-4">

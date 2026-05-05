@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CountdownTimer from "@/components/CountdownTimer";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -63,7 +64,7 @@ export default async function TorneioFifa() {
               CAMPEONATO DE{" "}
               <span className="text-[#ffe792] block md:inline">FC26</span>
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mb-6">
               <div className="bg-[#1f1f1f] p-6 border-l-4 border-[#ffe792]">
                 <p className="font-label text-xs text-[#ababab] uppercase tracking-widest mb-1">
                   DATE EVENT
@@ -88,6 +89,9 @@ export default async function TorneioFifa() {
                   4.000mt
                 </p>
               </div>
+            </div>
+            <div className="bg-black/40 backdrop-blur-sm px-6 py-4 border-l-4 border-[#ffe792] inline-block">
+              <CountdownTimer targetDate="2026-05-16T10:00:00" label="Faltam para o evento" />
             </div>
           </div>
         </section>
