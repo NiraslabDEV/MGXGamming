@@ -51,7 +51,7 @@ export default function CountdownTimer({
 
   if (compact) {
     return (
-      <div className="flex items-center gap-1 font-headline font-black text-sm">
+      <div className="flex items-center gap-2 font-headline font-black text-xl">
         <span className="text-[#ffe792]">{timeLeft.days}d</span>
         <span className="text-[#484848]">:</span>
         <span>{pad(timeLeft.hours)}h</span>
@@ -65,23 +65,23 @@ export default function CountdownTimer({
 
   return (
     <div>
-      <p className="font-label text-[10px] uppercase tracking-[0.3em] text-[#ababab] mb-3">
+      <p className="font-label text-[11px] uppercase tracking-[0.3em] text-[#ababab] mb-4">
         {label}
       </p>
-      <div className="flex items-end gap-3">
+      <div className="flex items-end gap-4">
         {[
           { value: timeLeft.days,    unit: "DIAS" },
           { value: timeLeft.hours,   unit: "HRS"  },
           { value: timeLeft.minutes, unit: "MIN"  },
           { value: timeLeft.seconds, unit: "SEG"  },
         ].map(({ value, unit }, i) => (
-          <div key={unit} className="flex items-end gap-3">
-            {i > 0 && <span className="font-headline font-black text-2xl text-[#484848] mb-1">:</span>}
+          <div key={unit} className="flex items-end gap-4">
+            {i > 0 && <span className="font-headline font-black text-4xl text-[#484848] mb-2">:</span>}
             <div className="text-center">
-              <span className="block font-headline font-black text-3xl leading-none tabular-nums">
+              <span className="block font-headline font-black text-6xl leading-none tabular-nums">
                 {pad(value)}
               </span>
-              <span className="font-label text-[9px] uppercase tracking-[0.2em] text-[#484848]">
+              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-[#484848] mt-1 block">
                 {unit}
               </span>
             </div>
